@@ -1,0 +1,208 @@
+[
+    {
+        "id": 1,
+        "company": "Unoversion",
+        "industry": "Data & AI Platform",
+        "services": ["Strategy", "Design", "Development"],
+        "title": "Turning an Idea Into a Digital Product Built to Grow",
+        "className": "text-white",
+        "slug": "unoversion-case-study",
+        "featured": true,
+        "timeline": "5 Weeks",
+        "year": "2025",
+        "platform": "Web & Dashboard",
+        "website": "https://unoversion.com",
+        "domain": "unoversion.com",
+        "image": "/unoversion-case.png",
+        "clientName": "Saurav Jha",
+        "clientRole": "Product Lead",
+        "atAGlance": "Unoversion needed a digital presence and web application that could clearly explain their AI data technology, remove onboarding friction, and attract enterprise partners. ZORS worked across product strategy, interface design, and high-performance development to build a platform ready for scale.",
+        "challenge": {
+            "headline": "The business had grown. Its digital presence hadn’t.",
+            "summary": "They had a powerful concept — an AI-driven data platform — but were stuck in endless prototyping without a clear path to market or confidence in the customer experience.",
+            "narrative": "The team had spent months sketching complex database architecture on paper, but every attempt to show prospective users or investors hit a wall. Non-technical stakeholders were confused by early demos, API responses felt clunky, and the team was burning time in demo mode instead of shipping to real users."
+        },
+        "solution": {
+            "headline": "One Direction. Every Layer Working Together.",
+            "summary": "We brought strategy, brand, design, and technology into one clear, frictionless system.",
+            "narrative": "Instead of adding layers of technical complexity, we clarified what mattered. We mapped out an intuitive 3-step user onboarding flow, created a crisp high-contrast UI design system, and engineered a fast, reliable web application using Next.js and serverless APIs."
+        },
+        "outcome": {
+            "headline": "Built to Work Today — Ready for What Comes Next.",
+            "summary": "From conceptual friction to a production-ready web platform in 5 weeks.",
+            "narrative": "The platform launched with sub-second page loads, zero downtime, and intuitive product tours that instantly clarified the value of their AI models. The client regained momentum and secured immediate enterprise interest."
+        },
+        "metrics": [
+            { "label": "Time to MVP", "value": "5 Weeks" },
+            { "label": "Page Load Speed", "value": "0.5s" },
+            { "label": "Core Web Vitals", "value": "100/100" },
+            { "label": "Stakeholder Clarity", "value": "100%" }
+        ],
+        "deliverables": [
+            "Product Strategy & Roadmap",
+            "Information Architecture",
+            "UI/UX Interface Design",
+            "Next.js Web Application",
+            "API & Database Integration",
+            "Production Deployment & Handover"
+        ],
+        "quote": "ZORS didn’t just build what we asked for. They helped us understand what the product actually needed to communicate, and turned it into something clean, fast, and ready to scale."
+    },
+    {
+        "id": 2,
+        "company": "Hyperwafer",
+        "industry": "Startups & Technology",
+        "services": ["Branding", "Design", "Development"],
+        "title": "From an Idea to a Brand and Digital Platform Ready to Launch",
+        "className": "text-white",
+        "slug": "hyperwafer-case-study",
+        "featured": true,
+        "timeline": "7 Weeks",
+        "year": "2025",
+        "platform": "Web & Waitlist Engine",
+        "website": "https://hyperwafer.com",
+        "domain": "hyperwafer.com",
+        "image": "/hyperwafer-case.png",
+        "clientName": "Sobha Kumari",
+        "clientRole": "Director",
+        "atAGlance": "Hyperwafer had bold workflow automation workflows mapped out on paper, but lacked a cohesive brand identity and a customer-facing platform. ZORS created a distinct brand system and engineered a high-converting web presence with early waitlist capture.",
+        "challenge": {
+            "headline": "A bold vision trapped in abstract concepts.",
+            "summary": "The team had innovative automation ideas sketched out, but no visual identity or functional web foundation to show early adopters.",
+            "narrative": "Turning deep technical capabilities into something tangible was difficult. Feature lists were long and complex, but there was no brand voice to rally around, no visual structure, and no way to capture incoming user demand."
+        },
+        "solution": {
+            "headline": "One Direction. Every Layer Working Together.",
+            "summary": "We shaped a brand identity that commands authority and built a high-performance web experience.",
+            "narrative": "We established a modern, developer-friendly brand language with precision typography and dark-mode elegance. In parallel, we built an interactive dashboard preview and a real-time waitlist system engineered for high concurrency."
+        },
+        "outcome": {
+            "headline": "Built to Work Today — Ready for What Comes Next.",
+            "summary": "From conceptual sketches to a live, branded platform in 7 weeks.",
+            "narrative": "Hyperwafer transitioned from abstract ideas to a production-grade digital presence with an active waitlist of qualified users and a modular design system ready for feature expansion."
+        },
+        "metrics": [
+            { "label": "Brand to Launch", "value": "7 Weeks" },
+            { "label": "Waitlist Conversion", "value": "+34%" },
+            { "label": "Performance Score", "value": "99/100" },
+            { "label": "Design Tokens", "value": "100%" }
+        ],
+        "deliverables": [
+            "Brand Strategy & Direction",
+            "Visual Identity & Logo System",
+            "UI/UX Design & Prototyping",
+            "Waitlist & Marketing Web Application",
+            "Performance Optimization",
+            "Documentation & Handover"
+        ],
+        "quote": "To see our idea go from rough sketches to a living, branded platform with one partner was remarkable. They communicated with clarity at every step."
+    },
+    {
+        "id": 3,
+        "company": "Kartikey AI",
+        "industry": "Digital Security",
+        "services": ["Strategy", "Branding", "Design", "Development"],
+        "title": "Building a Brand and Digital Experience People Can Recognize and Trust",
+        "className": "text-white",
+        "slug": "kartikey-ai-case-study",
+        "featured": false,
+        "timeline": "4 Weeks",
+        "year": "2025",
+        "platform": "Web Application",
+        "website": "https://kartikey.ai",
+        "domain": "kartikey.ai",
+        "image": "/kartikey-card.png",
+        "hero": "/kartikey-hero.png",
+        "wireframes": [
+            "/kartikey-wireframe-hero.png",
+            "/kartikey-wireframe.png",
+            "/kartikey-wireframe-2.png"
+        ],
+        "compare": [
+            "/kartikey-wireframe-hero.png",
+            "/kartikey-hero.png"
+        ],
+        "clientName": "Billy Singh",
+        "clientRole": "Lead Architect",
+        "atAGlance": "Kartikey AI needed to step into the digital security market with authority and clarity. ZORS developed their brand positioning, designed a clean user journey, and built a modern web platform engineered for trust and reliability.",
+        "challenge": {
+            "headline": "The business had grown. Its digital presence hadn’t.",
+            "summary": "In a crowded security sector, generic branding and cluttered technical jargon were causing high bounce rates.",
+            "narrative": "Prospective enterprise partners were dropping off because the core value proposition wasn't clear within the first 10 seconds. The existing interface lacked visual hierarchy, and the brand identity didn't reflect the caliber of their underlying technology."
+        },
+        "solution": {
+            "headline": "One Direction. Every Layer Working Together.",
+            "summary": "We crafted a distinct visual identity and a lightning-fast digital experience centered on trust.",
+            "narrative": "We clarified the core positioning around defense and precision. We created a bold, authoritative visual identity, engineered an interactive product tour, and deployed a high-speed web application with zero friction points."
+        },
+        "outcome": {
+            "headline": "Built to Work Today — Ready for What Comes Next.",
+            "summary": "Delivered a complete brand transformation and live platform in 4 weeks.",
+            "narrative": "The refreshed platform immediately reduced bounce rates, boosted demo inquiries, and established a trusted digital presence for enterprise partnerships."
+        },
+        "metrics": [
+            { "label": "Delivery Timeline", "value": "4 Weeks" },
+            { "label": "Inquiry Growth", "value": "+42%" },
+            { "label": "Bounce Rate", "value": "-28%" },
+            { "label": "Uptime", "value": "99.9%" }
+        ],
+        "deliverables": [
+            "Brand Positioning & Tone",
+            "Visual Identity System",
+            "Information Architecture",
+            "Interactive UI/UX Design",
+            "High-Performance Web App",
+            "Documentation & Handover"
+        ],
+        "quote": "ZORS didn’t just redesign what we had. They helped us understand what the business actually needed and turned it into something clearer, stronger, and easier to grow."
+    },
+    {
+        "id": 4,
+        "company": "Bharatsaga Foundation",
+        "industry": "Think Tank & Media",
+        "services": ["Strategy", "Design", "Development", "Optimization"],
+        "title": "Giving a Think Tank Its Digital Voice — Without the Tech Burden",
+        "className": "text-white",
+        "slug": "bharatsaga-case-study",
+        "featured": false,
+        "timeline": "3 Weeks",
+        "year": "2025",
+        "platform": "Digital Publishing & CMS",
+        "domain": "bharatsaga.org",
+        "website": "https://bharatsaga.org",
+        "image": "/bharatsaga-case.png",
+        "clientName": "Mithilesh Kumar",
+        "clientRole": "Executive Director",
+        "atAGlance": "Bharatsaga Foundation needed an elevated, easy-to-manage publication platform to share thoughtful research and dialogue. ZORS transitioned them from a brittle legacy CMS into a fast, modern digital publishing experience.",
+        "challenge": {
+            "headline": "Publishing ideas was held hostage by technical friction.",
+            "summary": "Their old WordPress site was slow, cluttered, and difficult for non-technical team members to update.",
+            "narrative": "Publishing research papers required manual developer intervention, creating editorial bottlenecks and stagnant visitor engagement. The platform felt clunky and failed to represent the intellectual depth of their organization."
+        },
+        "solution": {
+            "headline": "One Direction. Every Layer Working Together.",
+            "summary": "We engineered a clean editorial platform with seamless content management.",
+            "narrative": "We crafted a dignified editorial design with generous whitespace and elegant typography. We replaced their legacy setup with a modern headless CMS, empowering non-technical writers to format and publish rich articles in minutes."
+        },
+        "outcome": {
+            "headline": "Built to Work Today — Ready for What Comes Next.",
+            "summary": "From digital bottlenecks to an autonomous publishing engine in 3 weeks.",
+            "narrative": "Editorial staff now publish independently with zero tech overhead, page load speeds dropped by 90%, and subscriber engagement grew steadily week-on-week."
+        },
+        "metrics": [
+            { "label": "Publishing Speed", "value": "3 Weeks" },
+            { "label": "Load Time Reduction", "value": "90%" },
+            { "label": "Editorial Independence", "value": "100%" },
+            { "label": "Subscriber Growth", "value": "+15% / Wk" }
+        ],
+        "deliverables": [
+            "Editorial Strategy & Hierarchy",
+            "Content Architecture & UX",
+            "Headless CMS Implementation",
+            "Responsive Publishing Platform",
+            "Newsletter Automation",
+            "Team Training & Handover"
+        ],
+        "quote": "Coming from a non-technical background, it was refreshing to place our digital foundation in the hands of people who truly understand craftsmanship and simplicity."
+    }
+]
