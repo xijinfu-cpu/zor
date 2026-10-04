@@ -45,16 +45,16 @@ export default function LegalLayout({
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#171715] mb-3">
                         {title}
                     </h1>
-                    <p className="text-lg md:text-xl text-[#171715]/65 font-normal mb-4">
+                    <p className="text-lg md:text-xl text-[#5C5850] font-normal mb-4">
                         {subtitle}
                     </p>
-                    <p className="text-xs font-mono text-[#171715]/45">
+                    <p className="text-xs font-mono text-[#5C5850]">
                         Last updated: {lastUpdated}
                     </p>
                 </div>
 
                 {opening && (
-                    <div className="p-6 md:p-8 rounded-2xl bg-white/80 border border-[#171715]/10 shadow-xs mb-8 text-[#171715]/85 text-sm md:text-base leading-relaxed">
+                    <div className="p-6 md:p-8 rounded-2xl bg-white/80 border border-[#171715]/10 shadow-xs mb-8 text-[#171715]/90 text-sm md:text-base leading-relaxed">
                         {opening}
                     </div>
                 )}
@@ -69,7 +69,7 @@ export default function LegalLayout({
                             <h4 className="text-sm font-semibold text-[#171715] mb-1">
                                 {importantNotice.title}
                             </h4>
-                            <p className="text-xs sm:text-sm text-[#171715]/75 leading-relaxed">
+                            <p className="text-xs sm:text-sm text-[#4A4740] leading-relaxed">
                                 {importantNotice.content}
                             </p>
                         </div>
@@ -94,7 +94,7 @@ export default function LegalLayout({
                                 </h2>
                             </div>
 
-                            <div className="text-sm md:text-base text-[#171715]/75 leading-relaxed font-normal space-y-3">
+                            <div className="text-sm md:text-base text-[#4A4740] leading-relaxed font-normal space-y-3">
                                 {typeof sec.content === "string" ? (
                                     <p>{sec.content}</p>
                                 ) : (
@@ -120,7 +120,7 @@ export default function LegalLayout({
                         <span className="text-xs uppercase tracking-wider text-[#A88C40] font-mono block mb-1">
                             Questions or Notices?
                         </span>
-                        <p className="text-sm text-[#171715]/75">
+                        <p className="text-sm text-[#5C5850]">
                             Reach out to our team at{" "}
                             <a
                                 href="mailto:hello@zorscraft.id"

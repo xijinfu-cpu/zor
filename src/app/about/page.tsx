@@ -204,7 +204,67 @@ export default function About() {
                 </div>
             </section>
 
-            {/* 3. Our Values (9 values in 3x3 grid) */}
+            {/* 3. The Team Behind ZORS */}
+            <section className="py-16 md:py-20 border-t border-[#171715]/10">
+                <div className="max-w-6xl mx-auto px-5">
+                    <div className="max-w-3xl mb-12">
+                        <span className="text-xs uppercase tracking-wider text-[#A88C40] font-mono font-medium px-3.5 py-1 rounded-full bg-[#A88C40]/10 border border-[#A88C40]/25 inline-block mb-4">
+                            The Team Behind ZORS
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-semibold text-[#171715] tracking-tight leading-tight">
+                            Built by designers, developers, and thinkers who care about details.
+                        </h2>
+                        <p className="text-lg md:text-xl font-medium text-[#A88C40] mt-3">
+                            A small team. A focused process. Meaningful outcomes.
+                        </p>
+                        <p className="text-[#5C5850] text-base md:text-lg mt-4 leading-relaxed">
+                            We are an independent digital studio founded on the belief that meaningful work doesn't require agency bloat.
+                            We stay intentionally focused so every project receives direct senior attention, honest collaboration,
+                            and obsessive attention to craft.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-white/80 p-7 rounded-2xl border border-[#171715]/10 shadow-xs">
+                            <span className="font-mono text-xs text-[#A88C40] font-semibold tracking-wider block mb-3">
+                                01 / SENIOR FOCUS
+                            </span>
+                            <h3 className="text-xl font-semibold text-[#171715] mb-2">
+                                Direct Collaboration
+                            </h3>
+                            <p className="text-sm text-[#5C5850] leading-relaxed">
+                                You work directly with the practitioners who think, design, and code your product — never junior handoffs or layers of account managers.
+                            </p>
+                        </div>
+
+                        <div className="bg-white/80 p-7 rounded-2xl border border-[#171715]/10 shadow-xs">
+                            <span className="font-mono text-xs text-[#A88C40] font-semibold tracking-wider block mb-3">
+                                02 / UNIFIED CRAFT
+                            </span>
+                            <h3 className="text-xl font-semibold text-[#171715] mb-2">
+                                Cross-Discipline Rigor
+                            </h3>
+                            <p className="text-sm text-[#5C5850] leading-relaxed">
+                                Designers who understand code architecture. Engineers who obsess over typography and micro-interactions. Zero friction between vision and execution.
+                            </p>
+                        </div>
+
+                        <div className="bg-white/80 p-7 rounded-2xl border border-[#171715]/10 shadow-xs">
+                            <span className="font-mono text-xs text-[#A88C40] font-semibold tracking-wider block mb-3">
+                                03 / ACCOUNTABILITY
+                            </span>
+                            <h3 className="text-xl font-semibold text-[#171715] mb-2">
+                                Genuine Ownership
+                            </h3>
+                            <p className="text-sm text-[#5C5850] leading-relaxed">
+                                We treat every project as our own benchmark. We take pride in what we launch, and we support what we build long after the initial handover.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. Our Values (9 values in 3x3 grid) */}
             <section className="py-16 md:py-20">
                 <div className="max-w-6xl mx-auto px-5">
                     <div className="text-center max-w-2xl mx-auto mb-12">

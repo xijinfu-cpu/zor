@@ -7,6 +7,7 @@ import SelectedWork from "@/components/sections/services/selected-work";
 import Strategy from "@/components/sections/services/strategy";
 import Support from "@/components/sections/services/support";
 import WhatYouGet from "@/components/sections/services/what-you-get";
+import EngagementModel from "@/components/sections/services/engagement-model";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ArrowUpRight, MoveRight } from "lucide-react";
@@ -174,7 +175,10 @@ export default function Services() {
                 </div>
             </section>
 
-            {/* 11. FAQ Section */}
+            {/* 11. Engagement Models */}
+            <EngagementModel />
+
+            {/* 12. FAQ Section */}
             <section className="py-16 md:py-24 max-sm:px-5 font-medium relative">
                 <div className="max-w-5xl mx-auto">
                     <span className="border text-xs uppercase tracking-wider font-mono py-1 px-3.5 border-[#A88C40]/30 rounded-full bg-[#A88C40]/10 text-[#A88C40]">

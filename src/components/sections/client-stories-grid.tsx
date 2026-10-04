@@ -20,6 +20,7 @@ const ClientStoriesGrid: FunctionComponent<ClientStoriesGridProps> = ({ classNam
                         services={story.services || [(story as { projectType?: string }).projectType || "Experience"]}
                         title={story.title}
                         bgimg={story.image}
+                        result={(story as { result?: string }).result}
                         link={`/case-study/${story.id}`}
                     />
                 ))}

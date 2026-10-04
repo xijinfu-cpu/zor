@@ -21,15 +21,20 @@ const Hero: FunctionComponent<HeroProps> = ({ className }) => {
                     </span>
                 </div>
 
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div className="text-5xl flex flex-row gap-2 md:gap-0 md:flex-col leading-tight md:text-8xl md:leading-24 font-semibold tracking-tight text-[#171715]">
-                        <p>Think.</p>
-                        <p>Craft.</p>
-                        <p>Grow.</p>
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    <div className="space-y-4">
+                        <div className="text-5xl flex flex-row gap-2 md:gap-0 md:flex-col leading-tight md:text-8xl md:leading-24 font-semibold tracking-tight text-[#171715]">
+                            <p>Think.</p>
+                            <p>Craft.</p>
+                            <p>Grow.</p>
+                        </div>
+                        <p className="text-base md:text-lg font-medium text-[#4A4740] max-w-sm leading-snug">
+                            Digital studio crafting brands, websites, and digital products built to last.
+                        </p>
                     </div>
 
                     <div className="max-w-md md:pb-3 space-y-6">
-                        <p className="text-base md:text-lg font-normal text-[#171715]/75 leading-relaxed">
+                        <p className="text-base md:text-lg font-normal text-[#5C5850] leading-relaxed">
                             From strategy and brand identity to websites, digital experiences, and product solutions,
                             we help businesses build trust, attract customers, and grow.
                         </p>

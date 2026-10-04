@@ -237,6 +237,10 @@ export default function ProjectBriefForm() {
             >
                 {loading ? "Sending Brief..." : "Send Project Brief"} <ArrowUpRight className="size-4" />
             </button>
+
+            <p className="text-center text-xs font-mono text-[#5C5850] pt-1">
+                We usually reply within 24 hours.
+            </p>
         </form>
     );
 }

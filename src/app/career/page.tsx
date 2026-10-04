@@ -7,30 +7,24 @@ export const metadata: Metadata = {
     description: "Craft meaningful digital products with purpose, intention, and zero shortcuts. Explore open roles and career opportunities at ZORS CRAFT.",
 };
 
-const culturePoints = [
+const whyWorkPoints = [
     {
         number: "01",
-        title: "Craft Over Volume",
-        desc: "We focus on doing fewer things at a higher standard. We don't churn templates or rush unpolished ideas.",
-        icon: Sparkles,
+        title: "Ownership",
+        tagline: "You build things that matter.",
+        desc: "Take direct ownership from discovery to launch. We trust craftspeople to make decisions without red tape or bureaucratic layers.",
     },
     {
         number: "02",
-        title: "Autonomous Ownership",
-        desc: "You have the freedom to solve problems and make decisions. We trust craftspeople to own their work from thought to release.",
-        icon: Compass,
+        title: "Craftsmanship",
+        tagline: "Quality over shortcuts.",
+        desc: "We don't churn generic templates. We value typographic rigor, resilient architectures, and digital products built to endure.",
     },
     {
         number: "03",
-        title: "Direct & Transparent",
-        desc: "No bureaucratic layers or political posturing. Honest feedback, clear communication, and mutual respect.",
-        icon: Users,
-    },
-    {
-        number: "04",
-        title: "Continuous Evolution",
-        desc: "Digital technology never stands still. We invest in tooling, learning, and refining our collective engineering and design craft.",
-        icon: HeartHandshake,
+        title: "Growth",
+        tagline: "Always learning.",
+        desc: "Continuous refinement of technical craft, design sensitivity, and strategic perspective through challenging, high-impact projects.",
     },
 ];
 
@@ -74,16 +68,16 @@ export default function CareerPage() {
                         Craft With Purpose. <br className="hidden sm:inline" />
                         Build Work That Lasts.
                     </h1>
-                    <p className="text-base sm:text-lg md:text-xl font-normal text-[#171715]/60 max-w-2xl mx-auto mb-6">
-                        We are a tight-knit digital agency where strategy, design, and engineering converge to create enduring business value.
+                    <p className="text-base sm:text-lg md:text-xl font-normal text-[#5C5850] max-w-2xl mx-auto mb-6">
+                        We are a tight-knit digital studio where strategy, design, and engineering converge to create enduring business value.
                     </p>
-                    <p className="text-sm md:text-base text-[#171715]/75 max-w-xl mx-auto leading-relaxed">
+                    <p className="text-sm md:text-base text-[#4A4740] max-w-xl mx-auto leading-relaxed">
                         If you believe in craftsmanship over shortcuts, clear communication, and taking genuine pride in your work, we would love to build together.
                     </p>
                 </div>
             </section>
 
-            {/* 2. How We Work / Culture */}
+            {/* 2. Why Work With ZORS */}
             <section className="py-12 md:py-16">
                 <div className="max-w-6xl mx-auto px-5">
                     <div className="text-center max-w-2xl mx-auto mb-12">
@@ -91,38 +85,40 @@ export default function CareerPage() {
                             Culture & Principles
                         </span>
                         <h2 className="text-3xl md:text-4xl font-semibold text-[#171715] tracking-tight mt-1 mb-2">
-                            How We Work
+                            Why Work With ZORS
                         </h2>
-                        <p className="text-base text-[#171715]/60">
-                            The standards that guide our daily practice.
+                        <p className="text-base text-[#5C5850]">
+                            A focused studio environment built for craftspeople who care about details.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        {culturePoints.map((item, idx) => {
-                            const IconComponent = item.icon;
-                            return (
-                                <div
-                                    key={idx}
-                                    className="bg-white/80 p-6 md:p-7 rounded-2xl border border-[#171715]/10 shadow-xs flex flex-col justify-between"
-                                >
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-xs font-mono font-semibold text-[#A88C40] bg-[#A88C40]/10 border border-[#A88C40]/25 rounded-md px-2 py-0.5">
-                                            {item.number}
-                                        </span>
-                                        <IconComponent className="size-4 text-[#171715]/40" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-base font-semibold text-[#171715] mb-1.5">
-                                            {item.title}
-                                        </h3>
-                                        <p className="text-sm text-[#171715]/70 leading-relaxed">
-                                            {item.desc}
-                                        </p>
-                                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {whyWorkPoints.map((item, idx) => (
+                            <div
+                                key={idx}
+                                className="bg-white/80 p-7 md:p-8 rounded-2xl border border-[#171715]/10 shadow-xs flex flex-col justify-between"
+                            >
+                                <div className="flex items-center justify-between mb-6">
+                                    <span className="text-xs font-mono font-semibold text-[#A88C40] bg-[#A88C40]/10 border border-[#A88C40]/25 rounded-md px-2.5 py-1">
+                                        {item.number}
+                                    </span>
+                                    <span className="text-xs font-mono uppercase tracking-wider text-[#5C5850]">
+                                        ZORS CRAFT
+                                    </span>
                                 </div>
-                            );
-                        })}
+                                <div>
+                                    <h3 className="text-xl font-semibold text-[#171715] mb-1">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-sm font-medium text-[#A88C40] mb-3">
+                                        {item.tagline}
+                                    </p>
+                                    <p className="text-sm text-[#4A4740] leading-relaxed">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -139,7 +135,7 @@ export default function CareerPage() {
                                 Open Roles
                             </h2>
                         </div>
-                        <p className="text-sm text-[#171715]/60 max-w-sm">
+                        <p className="text-sm text-[#5C5850] max-w-sm">
                             We hire talented individuals based on portfolio, problem-solving depth, and dedication to craftsmanship.
                         </p>
                     </div>
@@ -163,14 +159,14 @@ export default function CareerPage() {
                                         >
                                             {role.discipline}
                                         </span>
-                                        <span className="text-xs text-[#171715]/50 font-mono">
+                                        <span className="text-xs text-[#5C5850] font-mono">
                                             {role.type}
                                         </span>
                                     </div>
                                     <h3 className="text-xl font-semibold text-[#171715]">
                                         {role.title}
                                     </h3>
-                                    <p className="text-sm text-[#171715]/70 leading-relaxed">
+                                    <p className="text-sm text-[#4A4740] leading-relaxed">
                                         {role.desc}
                                     </p>
                                 </div>
@@ -199,7 +195,7 @@ export default function CareerPage() {
                             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#171715] mt-2 mb-3">
                                 Don’t See Your Exact Role?
                             </h2>
-                            <p className="text-[#171715]/60 font-normal text-base md:text-lg max-w-xl">
+                            <p className="text-[#5C5850] font-normal text-base md:text-lg max-w-xl">
                                 We are always keen to meet curious engineers, thoughtful designers, and systems strategists. Send your portfolio and thoughts to our studio.
                             </p>
                         </div>

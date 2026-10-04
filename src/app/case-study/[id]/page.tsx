@@ -463,6 +463,7 @@ export default async function Page({
                             services={story.services}
                             title={story.title}
                             bgimg={story.image}
+                            result={(story as { result?: string }).result}
                             link={`/case-study/${story.id}`}
                         />
                     ))}

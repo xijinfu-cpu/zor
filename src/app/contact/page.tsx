@@ -1,5 +1,5 @@
 import ProjectBriefForm from "@/components/forms/project-brief-form";
-import { ArrowUpRight, Calendar, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Calendar, Mail, MapPin, Clock } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -36,6 +36,21 @@ export default function Contact() {
 
                 {/* Right: Direct Channels & Information */}
                 <div className="lg:col-span-5 space-y-6">
+                    {/* Expected Response Time Card */}
+                    <div className="bg-[#A88C40]/10 border border-[#A88C40]/30 p-5 rounded-2xl flex items-center gap-3.5">
+                        <div className="size-10 rounded-full bg-white flex items-center justify-center text-[#A88C40] shrink-0 border border-[#A88C40]/20 shadow-2xs">
+                            <Clock className="size-5" />
+                        </div>
+                        <div>
+                            <span className="text-xs font-mono uppercase tracking-wider text-[#A88C40] font-semibold block">
+                                Response Commitment
+                            </span>
+                            <p className="text-sm font-semibold text-[#171715]">
+                                We usually reply within 24 hours.
+                            </p>
+                        </div>
+                    </div>
+
                     {/* Via Email Card */}
                     <div className="bg-white/80 p-6 md:p-8 rounded-2xl border border-[#171715]/10 shadow-xs">
                         <div className="flex items-center gap-2 mb-3">

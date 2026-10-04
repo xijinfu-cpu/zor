@@ -15,7 +15,8 @@ const Footer: FunctionComponent<FooterProps> = ({ className }) => {
                 <Link href="/" className="inline-block">
                     <ZorsLockup className="h-8 md:h-9 w-auto" />
                 </Link>
-                <p className="text-xs font-mono text-[#171715]/60 tracking-wider">
+                <p className="text-sm md:text-base font-medium tracking-tight text-[#171715] flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A88C40]" />
                     Built Different. Meant to Last.
                 </p>
             </div>
@@ -34,7 +35,7 @@ const Footer: FunctionComponent<FooterProps> = ({ className }) => {
                             { label: 'Contact', link: '/contact' },
                         ].map((page, i) => (
                             <li key={i}>
-                                <Link href={page.link} className="text-[#171715]/80 hover:text-[#A88C40] flex items-center gap-1 duration-200">
+                                <Link href={page.link} className="text-[#171715]/90 hover:text-[#A88C40] flex items-center gap-1 duration-200">
                                     {page.label}
                                 </Link>
                             </li>
@@ -57,7 +58,7 @@ const Footer: FunctionComponent<FooterProps> = ({ className }) => {
                                     href={page.link}
                                     target={page.ext ? "_blank" : undefined}
                                     rel={page.ext ? "noopener noreferrer" : undefined}
-                                    className="text-[#171715]/80 hover:text-[#A88C40] flex items-center gap-1 duration-200"
+                                    className="text-[#171715]/90 hover:text-[#A88C40] flex items-center gap-1 duration-200"
                                 >
                                     {page.label} {page.ext && <ArrowUpRight size={14} strokeWidth={1.5} />}
                                 </Link>
@@ -74,9 +75,10 @@ const Footer: FunctionComponent<FooterProps> = ({ className }) => {
                             { label: 'Terms & Conditions', link: '/legal/terms' },
                             { label: 'Privacy Policy', link: '/legal/privacy' },
                             { label: 'Data Handling', link: '/legal/data-handling' },
+                            { label: 'Cookie Policy', link: '/legal/cookie-policy' },
                         ].map((page, i) => (
                             <li key={i}>
-                                <Link href={page.link} className="text-[#171715]/80 hover:text-[#A88C40] duration-200">
+                                <Link href={page.link} className="text-[#171715]/90 hover:text-[#A88C40] duration-200">
                                     {page.label}
                                 </Link>
                             </li>
@@ -85,11 +87,11 @@ const Footer: FunctionComponent<FooterProps> = ({ className }) => {
                 </div>
             </div>
 
-            <div className="py-6 border-t border-[#171715]/10 flex flex-col md:flex-row items-center justify-between text-xs text-[#171715]/60 gap-2">
+            <div className="py-6 border-t border-[#171715]/10 flex flex-col md:flex-row items-center justify-between text-xs text-[#5C5850] gap-2">
                 <p>
                     &copy; {new Date().getFullYear()} PT Zors Craft Digital. All rights reserved.
                 </p>
-                <p className="font-mono text-[11px] text-[#171715]/50">
+                <p className="font-mono text-[11px] text-[#5C5850]">
                     Strategy • Branding • Design • Development • Optimization • Support
                 </p>
             </div>

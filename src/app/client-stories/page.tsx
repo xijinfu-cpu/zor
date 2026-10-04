@@ -43,7 +43,66 @@ export default function ClientStories() {
             {/* 3. Collaborations */}
             <Clients />
 
-            {/* 4. Final CTA */}
+            {/* 4. Our Process Behind Every Project */}
+            <section className="py-16 md:py-24">
+                <div className="max-w-6xl mx-auto px-5">
+                    <div className="max-w-2xl mb-12">
+                        <span className="text-xs uppercase tracking-wider text-[#A88C40] font-mono font-medium px-3.5 py-1 rounded-full bg-[#A88C40]/10 border border-[#A88C40]/25 inline-block mb-4">
+                            Our Process Behind Every Project
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#171715] leading-tight">
+                            How We Build Together.
+                        </h2>
+                        <p className="text-[#5C5850] text-base md:text-lg mt-3 leading-relaxed">
+                            A clear, disciplined process designed to eliminate guesswork and turn ambitious ideas into lasting digital products.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                step: "01",
+                                name: "Understand",
+                                desc: "We learn your business, users, and goals before writing code or drawing wireframes."
+                            },
+                            {
+                                step: "02",
+                                name: "Craft",
+                                desc: "We create the strategy, visual direction, design systems, and user journey architecture."
+                            },
+                            {
+                                step: "03",
+                                name: "Build",
+                                desc: "We develop and refine the experience with modern frameworks, clean code, and zero fluff."
+                            },
+                            {
+                                step: "04",
+                                name: "Grow",
+                                desc: "We measure real performance, optimize conversion friction, and continuously improve what we build."
+                            }
+                        ].map((p, idx) => (
+                            <div
+                                key={idx}
+                                className="bg-white/80 p-7 rounded-2xl border border-[#171715]/10 shadow-xs flex flex-col justify-between"
+                            >
+                                <span className="font-mono text-xs text-[#A88C40] font-semibold tracking-wider mb-6 block">
+                                    {p.step} / {p.name.toUpperCase()}
+                                </span>
+                                <div>
+                                    <h3 className="text-xl font-semibold text-[#171715] mb-2">
+                                        {p.name}
+                                    </h3>
+                                    <p className="text-sm text-[#5C5850] leading-relaxed">
+                                        {p.desc}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. Final CTA */}
             <section className="pt-10 md:pt-16 pb-20">
                 <div className="max-w-5xl p-8 md:p-14 rounded-2xl bg-white/80 border border-[#171715]/10 shadow-xs mx-5 md:mx-auto">
                     <Link href={"/contact"} className="flex flex-col md:flex-row md:items-center justify-between group gap-6">

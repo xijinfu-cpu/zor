@@ -7,6 +7,7 @@ import Link from "next/link";
 import Industries from "@/components/sections/industries";
 import Solutions from "@/components/sections/solutions";
 import About from "@/components/sections/about";
+import WhyZors from "@/components/sections/why-zors";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function Home() {
       <Service />
       <Industries />
       <Solutions />
+      <WhyZors />
 
       {/* Final CTA: Let’s Craft It Together / Start a Project */}
       <section className="pt-10 md:pt-16 pb-16">
