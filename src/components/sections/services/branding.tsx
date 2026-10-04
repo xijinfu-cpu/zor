@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent, useEffect, useRef } from "react";
 import Card from "@/components/ui/card";
 import { Palette, Type, CheckCircle } from "lucide-react";
@@ -75,7 +75,7 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
                         loop
                         autoPlay
                     >
-                        <source src="/branding-vid-1.mp4" type="video/mp4" />
+                        <source src={getAssetPath("/branding-vid-1.mp4")} type="video/mp4" />
                     </video>
                 </div>
 
@@ -88,7 +88,7 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
                         loop
                         autoPlay
                     >
-                        <source src="/branding-vid-2.mp4" type="video/mp4" />
+                        <source src={getAssetPath("/branding-vid-2.mp4")} type="video/mp4" />
                     </video>
                 </div>
 
@@ -101,7 +101,7 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
                         loop
                         autoPlay
                     >
-                        <source src="/branding-vid-3.mp4" type="video/mp4" />
+                        <source src={getAssetPath("/branding-vid-3.mp4")} type="video/mp4" />
                     </video>
                 </div>
             </div>
@@ -121,7 +121,7 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
                             muted
                             loop
                         >
-                            <source src="/audience.mp4" type="video/mp4" />
+                            <source src={getAssetPath("/audience.mp4")} type="video/mp4" />
                         </video>
                         <span className="absolute bottom-3 left-3 text-[11px] bg-black/60 text-white px-2 py-0.5 rounded backdrop-blur-xs font-mono">
                             Tone & Persona
@@ -155,7 +155,7 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
                             id="visual-identity-vid-1"
                         >
                             <source
-                                src="/visual-identity.mp4"
+                                src={getAssetPath("/visual-identity.mp4")}
                                 type="video/mp4"
                             />
                         </video>

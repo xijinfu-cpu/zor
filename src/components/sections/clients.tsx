@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import Image from "next/image";
 
@@ -81,10 +81,9 @@ const Clients: FunctionComponent<ClientsProps> = ({ className }) => {
                             )}
                         >
                             <Image
-                                src={client.logo}
+                                src={getAssetPath(client.logo)}
                                 width={client.w}
                                 height={client.h}
-                                unoptimized
                                 alt={client.name}
                                 className={cn("object-contain", client.cls)}
                             />

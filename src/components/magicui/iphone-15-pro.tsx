@@ -1,4 +1,5 @@
 import { SVGProps } from "react";
+import { getAssetPath } from "@/lib/utils";
 
 export interface Iphone15ProProps extends SVGProps<SVGSVGElement> {
   width?: number;
@@ -59,7 +60,7 @@ export default function Iphone15Pro({
 
       {src && (
         <image
-          href={src}
+          href={getAssetPath(src)}
           x="21.25"
           y="19.25"
           width="389.5"
@@ -72,7 +73,7 @@ export default function Iphone15Pro({
         <foreignObject x="21.25" y="19.25" width="389.5" height="843.5">
           <video
             className="size-full overflow-hidden rounded-[55.75px] object-cover"
-            src={videoSrc}
+            src={getAssetPath(videoSrc)}
             autoPlay
             loop
             muted

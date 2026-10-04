@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import { Button } from "../ui/button";
 import { ArrowUpRight } from "lucide-react";
@@ -64,7 +64,7 @@ const Solutions: FunctionComponent<SolutionsProps> = ({ className }) => {
                         key={i}
                         className="group relative bg-[#171715] rounded-2xl p-6 flex justify-end flex-col min-h-60 overflow-hidden border border-[#171715]/10 shadow-xs duration-300"
                         style={{
-                            backgroundImage: `url('${item.image}')`,
+                            backgroundImage: `url('${getAssetPath(item.image)}')`,
                             backgroundPosition: "center",
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat"

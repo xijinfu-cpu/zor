@@ -8,8 +8,13 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: "export", // ensures `next export` works correctly
   basePath: basePath || undefined,
+  assetPrefix: basePath || undefined,
   images: {
-    unoptimized: true,
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath || "",
   },
   trailingSlash: true, // ensures folders are created for clean URLs
   reactStrictMode: true, // good dev practice

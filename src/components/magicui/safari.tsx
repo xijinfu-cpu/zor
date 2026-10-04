@@ -1,4 +1,5 @@
 import { SVGProps } from "react";
+import { getAssetPath } from "@/lib/utils";
 
 type SafariMode = "default" | "simple";
 
@@ -139,7 +140,7 @@ export function Safari({
         ) : null}
         {imageSrc && (
           <image
-            href={imageSrc}
+            href={getAssetPath(imageSrc)}
             width="1200"
             height="700"
             x="1"
@@ -159,7 +160,7 @@ export function Safari({
           >
             <video
               className="size-full overflow-hidden object-cover"
-              src={videoSrc}
+              src={getAssetPath(videoSrc)}
               autoPlay
               loop
               muted

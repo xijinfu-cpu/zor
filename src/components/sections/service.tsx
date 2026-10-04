@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import Image from "next/image";
 import Card from "../ui/card";
@@ -92,8 +92,7 @@ const Service: FunctionComponent<ServiceProps> = ({ className }) => {
                                 title={item.name}
                             />
                             <Image
-                                src={item.image}
-                                unoptimized
+                                src={getAssetPath(item.image)}
                                 width={260}
                                 height={200}
                                 alt={item.name}

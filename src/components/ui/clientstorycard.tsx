@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -30,7 +30,7 @@ const ClientStoryCard: FunctionComponent<ClientStoryCardProps> = ({
                 className
             )}
             style={{
-                backgroundImage: `url(${bgimg})`,
+                backgroundImage: `url(${getAssetPath(bgimg)})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat"

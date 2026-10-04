@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent, } from "react";
 import { Button } from "../../ui/button";
 import { ArrowUpRight } from "lucide-react";
@@ -73,7 +73,7 @@ const Hero: FunctionComponent<HeroProps> = ({ className }) => {
                     <InfiniteSlider gap={24} speed={40} className="rounded-xl bg-background mt-5 py-5">
                         {projects.map((project, index) => {
                             return (<div key={index} className={cn("text-white h-100 w-80 rounded-xl p-5 flex flex-col", project.color)}>
-                                <Image src={project.icon} alt={project.name} width={100} className="-ml-3" height={100} />
+                                <Image src={getAssetPath(project.icon)} alt={project.name} width={100} className="-ml-3" height={100} />
                                 <h1 className="mt-auto text-xl">
                                     {project.name}
                                 </h1>

@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 
 interface IndustriesProps {
@@ -61,7 +61,7 @@ const Industries: FunctionComponent<IndustriesProps> = ({ className }) => {
                             item.className
                         )}
                         style={{
-                            backgroundImage: `url('${item.image}')`,
+                            backgroundImage: `url('${getAssetPath(item.image)}')`,
                             backgroundPosition: "center",
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",

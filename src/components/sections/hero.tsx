@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -54,7 +54,7 @@ const Hero: FunctionComponent<HeroProps> = ({ className }) => {
                 {/* 1. Brand Identity */}
                 <div className="group relative h-64 md:h-80 rounded-xl overflow-hidden bg-neutral-100 flex flex-col justify-end p-5">
                     <Image
-                        src="/branding.png"
+                        src={getAssetPath("/branding.png")}
                         fill
                         alt="Brand Identity Craft"
                         className="object-cover group-hover:scale-105 duration-500"
@@ -69,7 +69,7 @@ const Hero: FunctionComponent<HeroProps> = ({ className }) => {
                 {/* 2. UI / Web Experience */}
                 <div className="group relative h-64 md:h-80 rounded-xl overflow-hidden bg-neutral-100 flex flex-col justify-end p-5">
                     <Image
-                        src="/designing.png"
+                        src={getAssetPath("/designing.png")}
                         fill
                         alt="Digital UI Design"
                         className="object-cover group-hover:scale-105 duration-500"
@@ -84,7 +84,7 @@ const Hero: FunctionComponent<HeroProps> = ({ className }) => {
                 {/* 3. Engineered Solutions */}
                 <div className="group relative h-64 md:h-80 rounded-xl overflow-hidden bg-neutral-100 flex flex-col justify-end p-5">
                     <Image
-                        src="/code-editor.png"
+                        src={getAssetPath("/code-editor.png")}
                         fill
                         alt="Engineered Code"
                         className="object-cover group-hover:scale-105 duration-500"

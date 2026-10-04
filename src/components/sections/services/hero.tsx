@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import { TextLoop } from "../../ui/text-loop";
 import Image from "next/image";
@@ -86,7 +86,7 @@ const Hero: FunctionComponent<HeroProps> = ({ className }) => {
                 <div className="grid font-medium grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto gap-5 relative">
                     {services.map((item, i) => <Card arrowDirDown key={i} title={item.name} sub={item.tagline} link={item.href} className="min-h-96 w-full">
                         <div className="h-72 duration-300 overflow-hidden flex items-center justify-center rounded-xl bg-neutral-100/70 p-4">
-                            <Image src={item.image} unoptimized width={260} height={200} alt={item.name} className={item.imgClassName} />
+                            <Image src={getAssetPath(item.image)} width={260} height={200} alt={item.name} className={item.imgClassName} />
                         </div>
                     </Card>)}
                 </div>
