@@ -38,7 +38,7 @@ jobs:
         run: npm run build
         env:
           GITHUB_ACTIONS: "true"
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path || '/zor' }}
+          NEXT_PUBLIC_BASE_PATH: "/zor"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

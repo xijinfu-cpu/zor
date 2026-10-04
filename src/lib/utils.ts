@@ -10,7 +10,10 @@ export function getAssetPath(path: string): string {
   if (path.startsWith("http://") || path.startsWith("https://") || path.startsWith("data:")) {
     return path;
   }
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS === "true" ? "/zor" : "");
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  if (basePath && cleanPath.startsWith(basePath)) {
+    return cleanPath;
+  }
   return `${basePath}${cleanPath}`;
 }
