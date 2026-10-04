@@ -218,7 +218,7 @@ export default function About() {
                             A small team. A focused process. Meaningful outcomes.
                         </p>
                         <p className="text-[#5C5850] text-base md:text-lg mt-4 leading-relaxed">
-                            We are an independent digital studio founded on the belief that meaningful work doesn't require agency bloat.
+                            We are an independent digital studio founded on the belief that meaningful work doesn&apos;t require agency bloat.
                             We stay intentionally focused so every project receives direct senior attention, honest collaboration,
                             and obsessive attention to craft.
                         </p>

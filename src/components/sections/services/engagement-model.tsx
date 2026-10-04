@@ -118,7 +118,7 @@ const EngagementModel: FunctionComponent<EngagementModelProps> = ({ className })
                                             item.featured ? "text-[#A88C40]" : "text-[#A88C40]"
                                         )}
                                     >
-                                        What's Included:
+                                        What&apos;s Included:
                                     </span>
                                     <ul className="space-y-2.5">
                                         {item.features.map((feat, idx) => (
