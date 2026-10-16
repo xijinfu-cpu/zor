@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/custom/footer";
 import Header from "@/components/custom/header";
+import { LanguageProvider } from "@/lib/language-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +18,8 @@ const geistMono = Geist_Mono({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#171717",
-  colorScheme: "light"
+  themeColor: "#171715",
+  colorScheme: "light",
 };
 
 export const metadata: Metadata = {
@@ -26,13 +27,22 @@ export const metadata: Metadata = {
     default: "ZORS CRAFT — Think. Craft. Grow.",
     template: "%s — ZORS CRAFT",
   },
-  description: "From strategy and brand identity to websites, digital experiences, and product solutions, we help businesses build trust, attract customers, and grow.",
+  description:
+    "From strategy and brand identity to websites, digital experiences, and product solutions, we help businesses build trust, attract customers, and grow.",
   applicationName: "ZORS CRAFT",
-  keywords: ["Design Agency", "Web Development", "Brand Strategy", "Digital Craftsmanship", "Next.js Development", "UI UX Design"],
+  keywords: [
+    "Design Agency",
+    "Web Development",
+    "Brand Strategy",
+    "Digital Craftsmanship",
+    "Next.js Development",
+    "UI UX Design",
+  ],
   authors: [{ name: "ZORS CRAFT" }],
   openGraph: {
     title: "ZORS CRAFT — Think. Craft. Grow.",
-    description: "From strategy and brand identity to websites, digital experiences, and product solutions, we help businesses build trust, attract customers, and grow.",
+    description:
+      "From strategy and brand identity to websites, digital experiences, and product solutions, we help businesses build trust, attract customers, and grow.",
     url: "https://zorscraft.id",
     siteName: "ZORS CRAFT",
     images: [
@@ -43,20 +53,21 @@ export const metadata: Metadata = {
         alt: "ZORS CRAFT",
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'ZORS CRAFT — Think. Craft. Grow.',
-    description: "From strategy and brand identity to websites, digital experiences, and product solutions, we help businesses build trust, attract customers, and grow.",
-    creator: '@zorscraft',
-    images: ['https://zorscraft.id/og.png'],
+    card: "summary_large_image",
+    title: "ZORS CRAFT — Think. Craft. Grow.",
+    description:
+      "From strategy and brand identity to websites, digital experiences, and product solutions, we help businesses build trust, attract customers, and grow.",
+    creator: "@zorscraft",
+    images: ["https://zorscraft.id/og.png"],
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -71,65 +82,43 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-neutral-900 dark:text-neutral-50 flex`}
       >
         <script type="application/ld+json">
-          {`
-    {
-      "@context": "https://schema.org", 
-      "@type": "Organization",
-      "name": "ZORS CRAFT",
-      "alternateName": "ZORS",
-      "url": "https://zorscraft.id", 
-      "logo": "https://zorscraft.id/logo.png", 
-      "description": "Think. Craft. Grow. ZORS is a digital studio crafting brands, websites, and digital products meant to last.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "General Inquiry",
-        "email": "hello@zorscraft.id",
-        "availableLanguage": ["en", "id"]
-      }
-    }
-  `}
+          {`{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ZORS CRAFT",
+            "alternateName": "ZORS",
+            "url": "https://zorscraft.id",
+            "logo": "https://zorscraft.id/logo.png",
+            "description": "Think. Craft. Grow. ZORS is a digital studio crafting brands, websites, and digital products meant to last.",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "General Inquiry",
+              "email": "hello@zorscraft.id",
+              "availableLanguage": ["en", "id"]
+            }
+          }`}
         </script>
         <script type="application/ld+json">
-          {`
-    {
-      "@context": "https://schema.org", 
-      "@type": "WebSite",
-      "url": "https://zorscraft.id/", 
-      "hasPart": [
-        {
-          "@type": "SiteNavigationElement",
-          "name": "Home",
-          "url": "https://zorscraft.id/"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "name": "Services",
-          "url": "https://zorscraft.id/services"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "name": "Client Stories",
-          "url": "https://zorscraft.id/client-stories"
-        },
-         {
-          "@type": "SiteNavigationElement",
-          "name": "About",
-          "url": "https://zorscraft.id/about"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "name": "Contact",
-          "url": "https://zorscraft.id/contact"
-        }
-      ]
-    }
-  `}
+          {`{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://zorscraft.id/",
+            "hasPart": [
+              { "@type": "SiteNavigationElement", "name": "Home", "url": "https://zorscraft.id/" },
+              { "@type": "SiteNavigationElement", "name": "Services", "url": "https://zorscraft.id/services" },
+              { "@type": "SiteNavigationElement", "name": "Client Stories", "url": "https://zorscraft.id/client-stories" },
+              { "@type": "SiteNavigationElement", "name": "About", "url": "https://zorscraft.id/about" },
+              { "@type": "SiteNavigationElement", "name": "Contact", "url": "https://zorscraft.id/contact" }
+            ]
+          }`}
         </script>
-        <Header />
-        <main className="w-full">
-          {children}
-          <Footer />
-        </main>
+        <LanguageProvider>
+          <Header />
+          <main className="w-full">
+            {children}
+            <Footer />
+          </main>
+        </LanguageProvider>
       </body>
     </html>
   );

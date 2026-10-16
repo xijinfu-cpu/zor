@@ -1,12 +1,31 @@
+"use client";
+
 import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import Image from "next/image";
+import { useLang } from "@/lib/language-context";
 
 interface ClientsProps {
     className?: string;
 }
 
+const text = {
+    en: {
+        badge: "Collaborations",
+        title: "Trusted by Growing Brands and Teams.",
+        more: "+ more partners",
+    },
+    id: {
+        badge: "Kolaborasi",
+        title: "Dipercaya oleh Brand dan Tim yang Terus Berkembang.",
+        more: "+ mitra lainnya",
+    },
+};
+
 const Clients: FunctionComponent<ClientsProps> = ({ className }) => {
+    const { lang } = useLang();
+    const t = text[lang];
+
     const clients = [
         {
             name: "Unoversion",
@@ -64,10 +83,10 @@ const Clients: FunctionComponent<ClientsProps> = ({ className }) => {
         <section className={cn("w-full py-16", className)}>
             <div className="max-w-5xl mx-5 md:mx-auto text-center mb-8">
                 <span className="text-xs uppercase tracking-wider text-[#A88C40] font-mono">
-                    Collaborations
+                    {t.badge}
                 </span>
                 <h3 className="text-lg md:text-xl font-medium text-[#171715] mt-1">
-                    Trusted by Growing Brands and Teams.
+                    {t.title}
                 </h3>
             </div>
             <div className="max-w-4xl mx-5 md:mx-auto">
@@ -90,7 +109,7 @@ const Clients: FunctionComponent<ClientsProps> = ({ className }) => {
                         </div>
                     ))}
                     <div className="h-28 relative flex items-center justify-center text-xs font-mono text-[#171715]/40">
-                        + more partners
+                        {t.more}
                     </div>
                 </div>
             </div>

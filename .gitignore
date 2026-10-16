@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 push.ps1
+
+# Local form submissions (private data — do not commit)
+/data/briefs.json

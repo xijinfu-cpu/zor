@@ -21,9 +21,7 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production", // strip console.logs
   },
-  experimental: {
-    optimizeCss: true, // remove unused css (if supported)
-  },
+
   webpack: (config) => {
     // Optional: Add any custom Webpack tweaks here
     return config;

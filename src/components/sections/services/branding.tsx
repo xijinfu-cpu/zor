@@ -4,12 +4,52 @@ import { cn, getAssetPath } from "@/lib/utils";
 import { FunctionComponent, useEffect, useRef } from "react";
 import Card from "@/components/ui/card";
 import { Palette, Type, CheckCircle } from "lucide-react";
+import { useLang } from "@/lib/language-context";
 
 interface BrandingProps {
     className?: string;
 }
 
+const brandingData = {
+    en: {
+        badge: "Branding",
+        title: "Branding,",
+        subtitle: "Build A Brand People Remember.",
+        desc: "A strong brand is more than a logo. We shape how your brand looks, feels, and communicates — creating a clear and consistent identity people can recognize, trust, and remember.",
+        card1Title: "Brand Direction",
+        card1Sub: "Define how your brand should speak, feel, and be remembered.",
+        card2Title: "Visual Identity",
+        card2Sub: "Turn your brand into a consistent visual system built to be recognized.",
+        card3Title: "Brand System",
+        card3Sub: "Guidelines that keep your identity consistent across every touchpoint.",
+        c3Standards: "Style Standards",
+        c3Ready: "Production Ready",
+        c3Colors: "Color Palette & Tokens",
+        c3Typo: "Typography Hierarchy",
+        c3Foot: "100% Brand Rules"
+    },
+    id: {
+        badge: "Branding",
+        title: "Branding,",
+        subtitle: "Bangun Brand yang Melekat di Ingatan.",
+        desc: "Brand yang kokoh jauh melampaui sekadar logo. Kami membentuk rupa, rasa, dan cara brand Anda berkomunikasi — menciptakan identitas yang gamblang, konsisten, dipercaya, dan selalu diingat orang.",
+        card1Title: "Arah & Karakter Brand",
+        card1Sub: "Menentukan bagaimana brand Anda bertutur, dirasakan, dan dikenang audiens.",
+        card2Title: "Identitas Visual",
+        card2Sub: "Mengubah esensi brand menjadi sistem visual konsisten yang mudah dikenali.",
+        card3Title: "Sistem & Pedoman Brand",
+        card3Sub: "Pedoman baku agar identitas Anda konsisten di seluruh media dan titik sentuh.",
+        c3Standards: "Standar Gaya",
+        c3Ready: "Siap Produksi",
+        c3Colors: "Palet Warna & Token",
+        c3Typo: "Hierarki Tipografi",
+        c3Foot: "100% Panduan Baku"
+    }
+};
+
 const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
+    const { lang } = useLang();
+    const t = brandingData[lang];
     const brandStrategyRef = useRef<HTMLDivElement>(null);
     const brandStrategyVideoRef = useRef<HTMLVideoElement>(null);
     const visualIdRef = useRef<HTMLDivElement>(null);
@@ -51,19 +91,17 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
         >
             <div className="max-w-5xl mx-auto font-medium relative">
                 <span className="border text-xs uppercase tracking-wider font-mono py-1 px-3.5 border-[#C76043]/30 text-[#C76043] rounded-full bg-[#C76043]/10">
-                    Branding
+                    {t.badge}
                 </span>
                 <h2 className="text-2xl md:text-4xl md:leading-12 my-3 font-semibold text-[#171715]">
-                    Branding, <br />
+                    {t.title} <br />
                     <span className="text-neutral-500 font-normal">
-                        Build A Brand People Remember.
+                        {t.subtitle}
                     </span>
                 </h2>
 
                 <p className="md:text-xl font-normal my-5 text-neutral-600 relative max-w-3xl leading-relaxed">
-                    A strong brand is more than a logo. We shape how your brand
-                    looks, feels, and communicates — creating a clear and
-                    consistent identity people can recognize, trust, and remember.
+                    {t.desc}
                 </p>
 
                 <div className="w-16 h-16 max-md:hidden absolute top-0 overflow-hidden rounded-xl right-0 bg-white shadow-xs">
@@ -130,10 +168,10 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
 
                     <div className="p-5">
                         <h2 className="text-xl md:text-2xl">
-                            Brand Direction
+                            {t.card1Title}
                             <br />
                             <span className="text-neutral-400 text-base font-normal">
-                                Define how your brand should speak, feel, and be remembered.
+                                {t.card1Sub}
                             </span>
                         </h2>
                     </div>
@@ -166,10 +204,10 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
 
                     <div className="p-5">
                         <h2 className="text-xl md:text-2xl">
-                            Visual Identity
+                            {t.card2Title}
                             <br />
                             <span className="text-neutral-400 text-base font-normal">
-                                Turn your brand into a consistent visual system built to be recognized.
+                                {t.card2Sub}
                             </span>
                         </h2>
                     </div>
@@ -177,21 +215,21 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
 
                 {/* 3. BRAND SYSTEM & GUIDELINES */}
                 <Card
-                    title="Brand System"
-                    sub="Guidelines that keep your identity consistent across every touchpoint."
+                    title={t.card3Title}
+                    sub={t.card3Sub}
                     className="min-h-96 w-full"
                 >
                     <div className="h-72 duration-300 overflow-hidden rounded-xl bg-neutral-50 border border-neutral-200/60 p-5 flex flex-col justify-between">
                         <div className="flex items-center justify-between pb-3 border-b border-[#171715]/10">
-                            <span className="text-xs uppercase tracking-wider text-[#171715]/60 font-mono">Style Standards</span>
-                            <span className="text-xs px-2 py-0.5 rounded-full bg-[#C76043]/10 text-[#C76043] border border-[#C76043]/25 font-mono">Production Ready</span>
+                            <span className="text-xs uppercase tracking-wider text-[#171715]/60 font-mono">{t.c3Standards}</span>
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-[#C76043]/10 text-[#C76043] border border-[#C76043]/25 font-mono">{t.c3Ready}</span>
                         </div>
 
                         {/* Visual Color swatches */}
                         <div className="space-y-3 my-auto">
                             <div>
                                 <p className="text-[11px] text-[#171715]/60 uppercase tracking-wider mb-1.5 flex items-center gap-1 font-mono">
-                                    <Palette className="size-3 text-[#C76043]" /> Color Palette & Tokens
+                                    <Palette className="size-3 text-[#C76043]" /> {t.c3Colors}
                                 </p>
                                 <div className="grid grid-cols-4 gap-1.5">
                                     <div className="h-8 rounded bg-[#171715] border border-[#171715] flex items-end p-1 text-[9px] text-[#F0ECE2] font-mono">#1717</div>
@@ -204,7 +242,7 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
                             {/* Typography Scale */}
                             <div className="bg-white/80 p-2.5 rounded-lg border border-[#171715]/10">
                                 <p className="text-[11px] text-[#171715]/60 uppercase tracking-wider mb-1 flex items-center gap-1 font-mono">
-                                    <Type className="size-3 text-[#C76043]" /> Typography Hierarchy
+                                    <Type className="size-3 text-[#C76043]" /> {t.c3Typo}
                                 </p>
                                 <p className="text-sm font-semibold text-[#171715] leading-tight">Display Inter Tight / 56px</p>
                                 <p className="text-xs text-[#171715]/60 font-normal">Body Text Inter Regular / 16px</p>
@@ -214,7 +252,7 @@ const Branding: FunctionComponent<BrandingProps> = ({ className }) => {
                         <div className="flex items-center justify-between pt-2 border-t border-[#171715]/10 text-xs text-[#171715]/60">
                             <span>Touchpoints Unified</span>
                             <span className="text-[#C76043] font-medium flex items-center gap-1">
-                                <CheckCircle className="size-3.5 text-[#C76043]" /> 100% Brand Rules
+                                <CheckCircle className="size-3.5 text-[#C76043]" /> {t.c3Foot}
                             </span>
                         </div>
                     </div>

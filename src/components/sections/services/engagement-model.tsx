@@ -1,81 +1,143 @@
+'use client'
+
 import { FunctionComponent } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Check } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useLang } from "@/lib/language-context";
 
 interface EngagementModelProps {
     className?: string;
 }
 
+const engagementData = {
+    en: {
+        badge: "Engagement Models",
+        title: "Partnership Models Built for",
+        subtitle: "Where Your Business Is Headed.",
+        desc: "We don’t believe in bloated agency retainers or hidden fees. We work with clear scopes, honest timelines, and transparent collaboration.",
+        whatsIncluded: "What's Included:",
+        models: [
+            {
+                name: "Starter",
+                badge: "Scoped Sprints",
+                desc: "For early ideas, brand identity foundations, or focused web sprints.",
+                features: [
+                    "Clearly defined scope & fixed deliverables",
+                    "Brand identity or modern web MVP",
+                    "Fast 3–5 week delivery cadence",
+                    "Direct lead collaboration without account managers",
+                    "Complete design system & codebase handover",
+                ],
+                cta: "Inquire Starter",
+                featured: false,
+            },
+            {
+                name: "Growth",
+                badge: "Most Popular",
+                desc: "For scaling businesses ready to accelerate product and market momentum.",
+                features: [
+                    "End-to-end strategy, brand, and web engineering",
+                    "High-performance Next.js web application",
+                    "Conversion flow & Core Web Vitals optimization",
+                    "Modular component library for rapid scaling",
+                    "Post-launch monitoring & iterative support",
+                ],
+                cta: "Inquire Growth",
+                featured: true,
+            },
+            {
+                name: "Custom",
+                badge: "Tailored Retainer",
+                desc: "For complex products, multi-platform ecosystems, and ongoing craft.",
+                features: [
+                    "Bespoke software architecture & API integrations",
+                    "Dedicated multidisciplinary design & dev team",
+                    "Continuous experimentation & performance tuning",
+                    "Priority response SLAs & weekly alignment",
+                    "Integrated directly into your internal workflow",
+                ],
+                cta: "Discuss Custom Scope",
+                featured: false,
+            },
+        ]
+    },
+    id: {
+        badge: "Model Kerjasama",
+        title: "Skema Kemitraan yang Dirancang untuk",
+        subtitle: "Arah Pertumbuhan Bisnis Anda.",
+        desc: "Kami menolak skema agensi berbiaya gemuk atau biaya siluman. Kami bekerja dengan ruang lingkup tegas, linimasa jujur, dan kolaborasi transparan.",
+        whatsIncluded: "Cakupan Layanan:",
+        models: [
+            {
+                name: "Starter",
+                badge: "Sprint Terarah",
+                desc: "Untuk validasi ide awal, fondasi identitas brand, atau sprint website terfokus.",
+                features: [
+                    "Ruang lingkup pasti & hasil deliverables tetap",
+                    "Identitas brand atau MVP web modern",
+                    "Kecepatan delivery terukur 3–5 minggu",
+                    "Kolaborasi langsung dengan praktisi inti",
+                    "Serah terima penuh sistem desain & kode",
+                ],
+                cta: "Pilih Starter",
+                featured: false,
+            },
+            {
+                name: "Growth",
+                badge: "Paling Populer",
+                desc: "Untuk bisnis berkembang yang siap melesatkan produk dan momentum pasar.",
+                features: [
+                    "Strategi terpadu, branding, & rekayasa web lengkap",
+                    "Aplikasi web Next.js berkinerja tinggi",
+                    "Optimasi alur konversi & Core Web Vitals",
+                    "Pustaka komponen modular siap ekspansi",
+                    "Pemantauan paska rilis & dukungan berkala",
+                ],
+                cta: "Pilih Growth",
+                featured: true,
+            },
+            {
+                name: "Custom",
+                badge: "Retainer Khusus",
+                desc: "Untuk produk digital kompleks, ekosistem multi-platform, dan inovasi berlanjut.",
+                features: [
+                    "Arsitektur perangkat lunak kustom & integrasi API",
+                    "Tim desainer & engineer lintas disiplin khusus",
+                    "Eksperimen fitur berkelanjutan & tuning performa",
+                    "SLA respon prioritas & sinkronisasi mingguan",
+                    "Terintegrasi langsung ke alur kerja internal Anda",
+                ],
+                cta: "Diskusikan Kebutuhan",
+                featured: false,
+            },
+        ]
+    }
+};
+
 const EngagementModel: FunctionComponent<EngagementModelProps> = ({ className }) => {
-    const models = [
-        {
-            name: "Starter",
-            badge: "Scoped Sprints",
-            desc: "For early ideas, brand identity foundations, or focused web sprints.",
-            ideal: "Early-stage founders, launches, and targeted revamps",
-            features: [
-                "Clearly defined scope & fixed deliverables",
-                "Brand identity or modern web MVP",
-                "Fast 3–5 week delivery cadence",
-                "Direct lead collaboration without account managers",
-                "Complete design system & codebase handover",
-            ],
-            cta: "Inquire Starter",
-            featured: false,
-        },
-        {
-            name: "Growth",
-            badge: "Most Popular",
-            desc: "For scaling businesses ready to accelerate product and market momentum.",
-            ideal: "Funded startups, growing platforms, and established companies",
-            features: [
-                "End-to-end strategy, brand, and web engineering",
-                "High-performance Next.js web application",
-                "Conversion flow & Core Web Vitals optimization",
-                "Modular component library for rapid scaling",
-                "Post-launch monitoring & iterative support",
-            ],
-            cta: "Inquire Growth",
-            featured: true,
-        },
-        {
-            name: "Custom",
-            badge: "Tailored Retainer",
-            desc: "For complex products, multi-platform ecosystems, and ongoing craft.",
-            ideal: "Enterprise products, platforms, and dedicated partner teams",
-            features: [
-                "Bespoke software architecture & API integrations",
-                "Dedicated multidisciplinary design & dev team",
-                "Continuous experimentation & performance tuning",
-                "Priority response SLAs & weekly alignment",
-                "Integrated directly into your internal workflow",
-            ],
-            cta: "Discuss Custom Scope",
-            featured: false,
-        },
-    ];
+    const { lang } = useLang();
+    const t = engagementData[lang];
 
     return (
         <section className={cn("w-full py-16 md:py-24", className)}>
             <div className="max-w-6xl mx-5 md:mx-auto">
                 <div className="max-w-2xl mb-12">
                     <span className="text-xs uppercase tracking-wider text-[#A88C40] font-mono font-medium px-3.5 py-1 rounded-full bg-[#A88C40]/10 border border-[#A88C40]/25 inline-block mb-4">
-                        Engagement Models
+                        {t.badge}
                     </span>
                     <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#171715] leading-tight">
-                        Partnership Models Built for <br />
-                        <span className="text-[#5C5850]">Where Your Business Is Headed.</span>
+                        {t.title} <br />
+                        <span className="text-[#5C5850]">{t.subtitle}</span>
                     </h2>
                     <p className="text-[#5C5850] text-base md:text-lg mt-4 leading-relaxed">
-                        We don’t believe in bloated agency retainers or hidden fees. We work with clear scopes,
-                        honest timelines, and transparent collaboration.
+                        {t.desc}
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {models.map((item, i) => (
+                    {t.models.map((item, i) => (
                         <div
                             key={i}
                             className={cn(
@@ -118,7 +180,7 @@ const EngagementModel: FunctionComponent<EngagementModelProps> = ({ className })
                                             item.featured ? "text-[#A88C40]" : "text-[#A88C40]"
                                         )}
                                     >
-                                        What&apos;s Included:
+                                        {t.whatsIncluded}
                                     </span>
                                     <ul className="space-y-2.5">
                                         {item.features.map((feat, idx) => (

@@ -4,13 +4,56 @@ import Card from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { FunctionComponent } from "react";
-import { Code2, Globe, ShoppingBag, Cpu, Check, Zap, Server } from "lucide-react";
+import { Globe, ShoppingBag, Cpu, Check, Zap, Server } from "lucide-react";
+import { useLang } from "@/lib/language-context";
 
 interface DevelopmentProps {
     className?: string;
 }
 
+const developmentData = {
+    en: {
+        badge: "Development",
+        title: "Development,",
+        subtitle: "Build Beyond The Visual.",
+        tagline: "Built to perform. Ready to grow.",
+        desc: "We turn thoughtful design into fast, reliable, and scalable digital products — built around your business, your users, and what comes next.",
+        card1Title: "Website Development",
+        card1Sub: "Fast, responsive, and reliable websites built for real business needs.",
+        c1Foot: "High Performance",
+        card2Title: "eCommerce & CMS",
+        card2Sub: "Flexible platforms that make content and commerce easier to manage.",
+        c2Foot: "Easy Management",
+        card3Title: "Custom Development & Integrations",
+        card3Sub: "Tailored functionality and integrations when off-the-shelf solutions are not enough.",
+        c3Foot: "Seamless Data",
+        techHeading: "Technologies We Work With",
+        techSub: "Proven, modern tools selected for reliability, speed, and long-term maintainability."
+    },
+    id: {
+        badge: "Pengembangan",
+        title: "Pengembangan,",
+        subtitle: "Membangun Lebih dari Sekadar Visual.",
+        tagline: "Dirancang untuk berkinerja tinggi. Siap bertumbuh pesat.",
+        desc: "Kami mewujudkan desain matang menjadi produk digital yang cepat, tangguh, dan terukur — dibangun khusus mengitari kebutuhan bisnis, kenyamanan pengguna, dan skalabilitas jangka panjang.",
+        card1Title: "Pengembangan Website",
+        card1Sub: "Website yang kilat, responsif di semua gawai, dan andal bagi kebutuhan bisnis riil.",
+        c1Foot: "Performa Tinggi",
+        card2Title: "eCommerce & CMS",
+        card2Sub: "Platform fleksibel yang memudahkan pengelolaan katalog produk dan konten harian.",
+        c2Foot: "Pengelolaan Mandiri Mudah",
+        card3Title: "Pengembangan Kustom & Integrasi",
+        card3Sub: "Fungsionalitas dan integrasi API khusus saat solusi instan tidak lagi mencukupi.",
+        c3Foot: "Sinkronisasi Data Mulus",
+        techHeading: "Teknologi yang Kami Gunakan",
+        techSub: "Rangkaian teknologi modern teruji yang dipilih demi keandalan, kecepatan, dan pemeliharaan mudah."
+    }
+};
+
 const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
+    const { lang } = useLang();
+    const t = developmentData[lang];
+
     const techStack = [
         { name: 'Next.js', icon: 'logos:nextjs-icon' },
         { name: 'React', icon: 'logos:react' },
@@ -26,20 +69,19 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
         <section className={cn("py-16 md:py-24 max-sm:px-5", className)} id="development">
             <div className="max-w-5xl mx-auto font-medium relative">
                 <span className="border text-xs uppercase tracking-wider font-mono py-1 px-3.5 border-[#A88C40]/30 text-[#A88C40] rounded-full bg-[#A88C40]/10">
-                    Development
+                    {t.badge}
                 </span>
                 <h2 className="text-2xl md:text-4xl md:leading-12 my-3 font-semibold text-[#171715]">
-                    Development, <br />
+                    {t.title} <br />
                     <span className="text-neutral-500 font-normal">
-                        Build Beyond The Visual.
+                        {t.subtitle}
                     </span>
                 </h2>
                 <p className="text-[#A88C40] text-sm md:text-base font-medium">
-                    Built to perform. Ready to grow.
+                    {t.tagline}
                 </p>
                 <p className="md:text-xl font-normal my-4 text-neutral-600 relative max-w-3xl leading-relaxed">
-                    We turn thoughtful design into fast, reliable, and scalable digital products — built
-                    around your business, your users, and what comes next.
+                    {t.desc}
                 </p>
             </div>
 
@@ -47,8 +89,8 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 font-medium max-w-6xl mx-auto mt-12">
                 {/* 1. Website Development */}
                 <Card
-                    title="Website Development"
-                    sub="Fast, responsive, and reliable websites built for real business needs."
+                    title={t.card1Title}
+                    sub={t.card1Sub}
                     className="min-h-96 w-full"
                 >
                     <div className="h-72 duration-300 overflow-hidden rounded-xl bg-neutral-900 text-white p-5 flex flex-col justify-between">
@@ -73,7 +115,7 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
                         <div className="flex items-center justify-between pt-2 border-t border-neutral-800 text-xs text-neutral-400">
                             <span>Modern Stack</span>
                             <span className="text-emerald-400 flex items-center gap-1">
-                                <Zap className="size-3.5" /> High Performance
+                                <Zap className="size-3.5" /> {t.c1Foot}
                             </span>
                         </div>
                     </div>
@@ -81,8 +123,8 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
 
                 {/* 2. eCommerce & CMS */}
                 <Card
-                    title="eCommerce & CMS"
-                    sub="Flexible platforms that make content and commerce easier to manage."
+                    title={t.card2Title}
+                    sub={t.card2Sub}
                     className="min-h-96 w-full"
                 >
                     <div className="h-72 duration-300 overflow-hidden rounded-xl bg-neutral-50 border border-neutral-200/60 p-5 flex flex-col justify-between">
@@ -107,7 +149,7 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
                         <div className="flex items-center justify-between pt-2 border-t border-neutral-200 text-xs text-neutral-500">
                             <span>Client Empowered</span>
                             <span className="text-neutral-900 font-medium flex items-center gap-1">
-                                <Check className="size-3.5 text-emerald-600" /> Easy Management
+                                <Check className="size-3.5 text-emerald-600" /> {t.c2Foot}
                             </span>
                         </div>
                     </div>
@@ -115,8 +157,8 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
 
                 {/* 3. Custom Development & Integrations */}
                 <Card
-                    title="Custom Development & Integrations"
-                    sub="Tailored functionality and integrations when off-the-shelf solutions are not enough."
+                    title={t.card3Title}
+                    sub={t.card3Sub}
                     className="min-h-96 w-full"
                 >
                     <div className="h-72 duration-300 overflow-hidden rounded-xl bg-[#F0ECE2]/60 border border-[#171715]/10 p-5 flex flex-col justify-between">
@@ -141,7 +183,7 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
                         <div className="flex items-center justify-between pt-2 border-t border-[#171715]/10 text-xs text-[#171715]/60">
                             <span>Tailored Logic</span>
                             <span className="text-[#A88C40] font-medium flex items-center gap-1">
-                                <Cpu className="size-3.5 text-[#A88C40]" /> Seamless Data
+                                <Cpu className="size-3.5 text-[#A88C40]" /> {t.c3Foot}
                             </span>
                         </div>
                     </div>
@@ -153,10 +195,10 @@ const Development: FunctionComponent<DevelopmentProps> = ({ className }) => {
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                     <div>
                         <p className="text-xs uppercase tracking-wider font-mono text-neutral-400">Foundation</p>
-                        <h3 className="text-lg font-semibold text-neutral-900">Technologies We Work With</h3>
+                        <h3 className="text-lg font-semibold text-neutral-900">{t.techHeading}</h3>
                     </div>
                     <p className="text-xs text-neutral-500 max-w-md">
-                        Proven, modern tools selected for reliability, speed, and long-term maintainability.
+                        {t.techSub}
                     </p>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">

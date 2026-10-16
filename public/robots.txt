@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or private routes (none currently, but good practice)
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://zorscraft.id/sitemap.xml

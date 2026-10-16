@@ -1,7 +1,6 @@
 "use client"
 
-import { ArrowUpRight, Moon, Search } from "lucide-react";
-import Image from "next/image";
+import { ArrowUpRight, Search } from "lucide-react";
 import Link from "next/link";
 import { FunctionComponent, useState } from "react";
 import { usePathname } from 'next/navigation';

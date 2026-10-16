@@ -1,4 +1,4 @@
-import { ArrowUpRight, ShieldAlert, Sparkles } from "lucide-react";
+import { ArrowUpRight, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
 

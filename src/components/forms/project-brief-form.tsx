@@ -1,12 +1,86 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, CheckCircle2, Send } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { submitContactForm } from "@/app/actions/contact";
+import { useLang } from "@/lib/language-context";
+
+const formText = {
+    en: {
+        badge: "START A PROJECT",
+        title: "Project Brief",
+        subtitle: "Already know what you need? Tell us about your business, goals, timeline, and what you would like us to help with.",
+        receivedBadge: "Brief Received",
+        receivedDesc: "Thank you for sharing your project goals. We will review your brief and get back to you with clear next steps within 24 hours.",
+        anotherBrief: "Submit another brief",
+        nameLabel: "Name *",
+        namePlaceholder: "Your full name",
+        companyLabel: "Company / Brand *",
+        companyPlaceholder: "Company or project name",
+        emailLabel: "Email Address *",
+        emailPlaceholder: "name@company.com",
+        websiteLabel: "Website (Optional)",
+        websitePlaceholder: "https://yourwebsite.com",
+        servicesLabel: "Services Needed",
+        summaryLabel: "Project Summary *",
+        summaryPlaceholder: "Briefly describe what you are building, changing, or planning...",
+        goalsLabel: "Goals & Key Challenges",
+        goalsPlaceholder: "What specific outcome or problem are you trying to solve?",
+        timelineLabel: "Target Timeline",
+        timelinePlaceholder: "Select target timeline",
+        budgetLabel: "Budget Range (Optional)",
+        budgetPlaceholder: "Select budget range",
+        referralLabel: "How Did You Hear About Us?",
+        referralPlaceholder: "Referral, social, client work, search...",
+        consentPrefix: "By submitting this form, you acknowledge our ",
+        privacyLink: "Privacy Policy",
+        consentSuffix: " and consent to ZORS CRAFT using the information provided to respond to your inquiry.",
+        submitBtn: "Send Project Brief",
+        submittingBtn: "Sending Brief...",
+        replyNote: "We usually reply within 24 hours.",
+    },
+    id: {
+        badge: "MULAI PROYEK",
+        title: "Brief Proyek",
+        subtitle: "Sudah tahu apa yang kamu butuhkan? Ceritakan tentang bisnis, tujuan, linimasa, dan apa yang ingin kamu bangun bersama kami.",
+        receivedBadge: "Brief Telah Diterima",
+        receivedDesc: "Terima kasih telah berbagi visi proyek kamu. Kami akan meninjau brief ini dan menghubungi kamu beserta langkah selanjutnya dalam 24 jam.",
+        anotherBrief: "Kirim brief lainnya",
+        nameLabel: "Nama Lengkap *",
+        namePlaceholder: "Nama lengkap kamu",
+        companyLabel: "Perusahaan / Brand *",
+        companyPlaceholder: "Nama perusahaan atau brand",
+        emailLabel: "Alamat Email *",
+        emailPlaceholder: "nama@perusahaan.com",
+        websiteLabel: "Website (Opsional)",
+        websitePlaceholder: "https://websitekamu.com",
+        servicesLabel: "Layanan yang Dibutuhkan",
+        summaryLabel: "Ringkasan Proyek *",
+        summaryPlaceholder: "Ceritakan secara singkat apa yang sedang kamu bangun, perbaiki, atau rencanakan...",
+        goalsLabel: "Tujuan & Tantangan Utama",
+        goalsPlaceholder: "Target atau masalah spesifik apa yang ingin diselesaikan?",
+        timelineLabel: "Target Linimasa",
+        timelinePlaceholder: "Pilih target linimasa",
+        budgetLabel: "Perkiraan Anggaran (Opsional)",
+        budgetPlaceholder: "Pilih estimasi anggaran",
+        referralLabel: "Dari mana kamu mengetahui tentang kami?",
+        referralPlaceholder: "Rekomendasi, media sosial, karya klien, pencarian...",
+        consentPrefix: "Dengan mengirimkan formulir ini, kamu menyetujui ",
+        privacyLink: "Kebijakan Privasi",
+        consentSuffix: " kami dan mengizinkan ZORS CRAFT menggunakan data tersebut untuk membalas pesan kamu.",
+        submitBtn: "Kirim Brief Proyek",
+        submittingBtn: "Mengirimkan Brief...",
+        replyNote: "Kami biasanya merespons dalam waktu 24 jam.",
+    },
+};
 
 export default function ProjectBriefForm() {
+    const { lang } = useLang();
+    const t = formText[lang];
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
     const services = [
@@ -24,14 +98,34 @@ export default function ProjectBriefForm() {
         );
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        // Simulate quick submission
-        setTimeout(() => {
-            setLoading(false);
+        setError(null);
+
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        const result = await submitContactForm({
+            name: data.get("name") as string,
+            company: data.get("company") as string,
+            email: data.get("email") as string,
+            website: data.get("website") as string,
+            services: selectedServices,
+            summary: data.get("summary") as string,
+            goals: data.get("goals") as string,
+            timeline: data.get("timeline") as string,
+            budget: data.get("budget") as string,
+            referral: data.get("referral") as string,
+        });
+
+        setLoading(false);
+
+        if (result.success) {
             setSubmitted(true);
-        }, 600);
+        } else {
+            setError(result.message);
+        }
     };
 
     if (submitted) {
@@ -41,18 +135,18 @@ export default function ProjectBriefForm() {
                     <CheckCircle2 className="size-6" />
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold text-[#171715]">
-                    Brief Received
+                    {t.receivedBadge}
                 </h3>
                 <p className="text-sm md:text-base text-[#171715]/70 max-w-md mx-auto leading-relaxed">
-                    Thank you for sharing your project goals. We will review your brief and get back to you with clear next steps within 24 hours.
+                    {t.receivedDesc}
                 </p>
                 <div className="pt-4">
                     <button
                         type="button"
-                        onClick={() => setSubmitted(false)}
+                        onClick={() => { setSubmitted(false); setError(null); setSelectedServices([]); }}
                         className="text-xs font-mono text-[#171715]/60 hover:text-[#171715] underline underline-offset-4"
                     >
-                        Submit another brief
+                        {t.anotherBrief}
                     </button>
                 </div>
             </div>
@@ -63,36 +157,46 @@ export default function ProjectBriefForm() {
         <form onSubmit={handleSubmit} className="bg-white/90 p-6 md:p-10 rounded-2xl border border-[#171715]/10 shadow-xs space-y-6">
             <div>
                 <span className="text-xs uppercase tracking-wider text-[#A88C40] font-mono font-medium block mb-1">
-                    START A PROJECT
+                    {t.badge}
                 </span>
                 <h3 className="text-xl md:text-2xl font-semibold text-[#171715]">
-                    Project Brief
+                    {t.title}
                 </h3>
                 <p className="text-xs md:text-sm text-[#171715]/60 mt-1">
-                    Already know what you need? Tell us about your business, goals, timeline, and what you would like us to help with.
+                    {t.subtitle}
                 </p>
             </div>
 
+            {/* Error message */}
+            {error && (
+                <div className="flex items-start gap-2.5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700">
+                    <AlertCircle className="size-4 mt-0.5 shrink-0" />
+                    <p className="text-sm">{error}</p>
+                </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                        Name *
+                        {t.nameLabel}
                     </label>
                     <input
                         required
+                        name="name"
                         type="text"
-                        placeholder="Your full name"
+                        placeholder={t.namePlaceholder}
                         className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all"
                     />
                 </div>
                 <div>
                     <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                        Company / Brand *
+                        {t.companyLabel}
                     </label>
                     <input
                         required
+                        name="company"
                         type="text"
-                        placeholder="Company or project name"
+                        placeholder={t.companyPlaceholder}
                         className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all"
                     />
                 </div>
@@ -101,22 +205,24 @@ export default function ProjectBriefForm() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                        Email Address *
+                        {t.emailLabel}
                     </label>
                     <input
                         required
+                        name="email"
                         type="email"
-                        placeholder="name@company.com"
+                        placeholder={t.emailPlaceholder}
                         className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all"
                     />
                 </div>
                 <div>
                     <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                        Website (Optional)
+                        {t.websiteLabel}
                     </label>
                     <input
+                        name="website"
                         type="url"
-                        placeholder="https://yourwebsite.com"
+                        placeholder={t.websitePlaceholder}
                         className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all"
                     />
                 </div>
@@ -125,7 +231,7 @@ export default function ProjectBriefForm() {
             {/* Service Needed */}
             <div>
                 <label className="text-xs font-mono text-[#171715]/60 block mb-2">
-                    Services Needed
+                    {t.servicesLabel}
                 </label>
                 <div className="flex flex-wrap gap-2">
                     {services.map((svc) => {
@@ -151,12 +257,13 @@ export default function ProjectBriefForm() {
             {/* Project Summary */}
             <div>
                 <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                    Project Summary *
+                    {t.summaryLabel}
                 </label>
                 <textarea
                     required
+                    name="summary"
                     rows={3}
-                    placeholder="Briefly describe what you are building, changing, or planning..."
+                    placeholder={t.summaryPlaceholder}
                     className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl p-3.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all resize-none"
                 />
             </div>
@@ -164,11 +271,12 @@ export default function ProjectBriefForm() {
             {/* Goals / Challenges */}
             <div>
                 <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                    Goals & Key Challenges
+                    {t.goalsLabel}
                 </label>
                 <textarea
+                    name="goals"
                     rows={2}
-                    placeholder="What specific outcome or problem are you trying to solve?"
+                    placeholder={t.goalsPlaceholder}
                     className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl p-3.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all resize-none"
                 />
             </div>
@@ -176,38 +284,40 @@ export default function ProjectBriefForm() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                        Target Timeline
+                        {t.timelineLabel}
                     </label>
-                    <select className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all">
-                        <option value="">Select target timeline</option>
-                        <option value="ASAP (within 1 month)">ASAP (within 1 month)</option>
-                        <option value="1–2 Months">1–2 Months</option>
-                        <option value="2–3 Months">2–3 Months</option>
-                        <option value="Flexible">Flexible</option>
+                    <select name="timeline" className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all">
+                        <option value="">{t.timelinePlaceholder}</option>
+                        <option value="ASAP (within 1 month)">{lang === "id" ? "Secepatnya (dalam 1 bulan)" : "ASAP (within 1 month)"}</option>
+                        <option value="1–2 Months">{lang === "id" ? "1–2 Bulan" : "1–2 Months"}</option>
+                        <option value="2–3 Months">{lang === "id" ? "2–3 Bulan" : "2–3 Months"}</option>
+                        <option value="Flexible">{lang === "id" ? "Fleksibel" : "Flexible"}</option>
                     </select>
                 </div>
                 <div>
                     <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                        Budget Range (Optional)
+                        {t.budgetLabel}
                     </label>
-                    <select className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all">
-                        <option value="">Select budget range</option>
-                        <option value="$100 – $500">$100 – $500</option>
-                        <option value="$500 – $1,000">$500 – $1,000</option>
-                        <option value="$1,000 – $3,000">$1,000 – $3,000</option>
-                        <option value="$3,000 – $5,000">$3,000 – $5,000</option>
-                        <option value="$5,000 – $10,000">$5,000 – $10,000</option>
+                    <select name="budget" className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all">
+                        <option value="">{t.budgetPlaceholder}</option>
+                        <option value="Under IDR 5.000.000">&lt; IDR 5.000.000</option>
+                        <option value="IDR 5.000.000 – 15.000.000">IDR 5.000.000 – 15.000.000</option>
+                        <option value="IDR 15.000.000 – 30.000.000">IDR 15.000.000 – 30.000.000</option>
+                        <option value="IDR 30.000.000 – 75.000.000">IDR 30.000.000 – 75.000.000</option>
+                        <option value="IDR 75.000.000 – 150.000.000">IDR 75.000.000 – 150.000.000</option>
+                        <option value="Above IDR 150.000.000">&gt; IDR 150.000.000</option>
                     </select>
                 </div>
             </div>
 
             <div>
                 <label className="text-xs font-mono text-[#171715]/60 block mb-1.5">
-                    How Did You Hear About Us?
+                    {t.referralLabel}
                 </label>
                 <input
+                    name="referral"
                     type="text"
-                    placeholder="Referral, social, client work, search..."
+                    placeholder={t.referralPlaceholder}
                     className="w-full text-sm bg-[#F0ECE2]/50 border border-[#171715]/15 rounded-xl px-3.5 py-2.5 text-[#171715] focus:outline-none focus:border-[#586B6D] focus:ring-1 focus:ring-[#586B6D]/20 focus:bg-white transition-all"
                 />
             </div>
@@ -221,11 +331,11 @@ export default function ProjectBriefForm() {
                         className="mt-0.5 rounded border-[#171715]/30 text-[#171715] focus:ring-0"
                     />
                     <span>
-                        By submitting this form, you acknowledge our{" "}
+                        {t.consentPrefix}
                         <Link href="/legal/privacy" className="text-[#586B6D] underline underline-offset-2 hover:text-[#171715]">
-                            Privacy Policy
-                        </Link>{" "}
-                        and consent to ZORS CRAFT using the information provided to respond to your inquiry.
+                            {t.privacyLink}
+                        </Link>
+                        {t.consentSuffix}
                     </span>
                 </label>
             </div>
@@ -235,11 +345,11 @@ export default function ProjectBriefForm() {
                 disabled={loading}
                 className="w-full py-3.5 px-6 rounded-xl bg-[#171715] hover:bg-[#A88C40] hover:text-[#171715] text-[#F0ECE2] font-medium flex items-center justify-center gap-2 text-sm transition-colors duration-200 disabled:opacity-70 shadow-sm"
             >
-                {loading ? "Sending Brief..." : "Send Project Brief"} <ArrowUpRight className="size-4" />
+                {loading ? t.submittingBtn : t.submitBtn} <ArrowUpRight className="size-4" />
             </button>
 
             <p className="text-center text-xs font-mono text-[#5C5850] pt-1">
-                We usually reply within 24 hours.
+                {t.replyNote}
             </p>
         </form>
     );

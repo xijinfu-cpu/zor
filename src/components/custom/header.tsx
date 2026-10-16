@@ -1,54 +1,86 @@
-'use client'
+'use client';
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FunctionComponent, useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { ArrowUpRight, Menu, MoveRight, X } from "lucide-react";
-import { HyperText } from "../magicui/hyper-text";
-
+import { Menu, MoveRight, X, Globe } from "lucide-react";
 import { ZorsSymbol } from "./logo";
+import { useLang } from "@/lib/language-context";
 
 interface HeaderProps {
     className?: string;
 }
 
+const navContent = {
+    en: {
+        items: [
+            { name: 'Home', href: '/' },
+            { name: 'Services', href: '/services' },
+            { name: 'Client Stories', href: '/client-stories' },
+            { name: 'About Us', href: '/about' },
+        ],
+        cta: 'Start a Project',
+    },
+    id: {
+        items: [
+            { name: 'Beranda', href: '/' },
+            { name: 'Layanan', href: '/services' },
+            { name: 'Kisah Klien', href: '/client-stories' },
+            { name: 'Tentang Kami', href: '/about' },
+        ],
+        cta: 'Mulai Proyek',
+    },
+};
+
 const Header: FunctionComponent<HeaderProps> = ({ className }) => {
     const pathname = usePathname();
     const [offset, setOffset] = useState(0);
     const [open, setOpen] = useState(false);
+    const { lang, setLang } = useLang();
+    const t = navContent[lang];
 
     useEffect(() => {
-        function onScroll() {
-            setOffset(window.scrollY);
-        }
+        function onScroll() { setOffset(window.scrollY); }
         window.addEventListener("scroll", onScroll);
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-        };
+        return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    const navItems = [
-        { name: 'Home', href: '/' },
-        { name: 'Services', href: '/services' },
-        { name: 'Client Stories', href: '/client-stories' },
-        { name: 'About Us', href: '/about' },
-    ];
+    const LangToggle = ({ size = "sm" }: { size?: "sm" | "xs" }) => (
+        <div className={`inline-flex items-center gap-0.5 bg-[#171715]/5 border border-[#171715]/10 rounded-full ${size === "xs" ? "p-0.5" : "p-1"}`}>
+            <Globe className={`text-[#171715]/30 ml-1 ${size === "xs" ? "size-2.5" : "size-3"}`} />
+            {(["en", "id"] as const).map((l) => (
+                <button
+                    key={l}
+                    onClick={() => setLang(l)}
+                    className={`font-mono font-semibold rounded-full transition-all duration-200 uppercase ${size === "xs" ? "text-[9px] px-2 py-0.5" : "text-[10px] px-2.5 py-0.5"} ${
+                        lang === l
+                            ? "bg-[#171715] text-[#F0ECE2]"
+                            : "text-[#171715]/40 hover:text-[#171715]"
+                    }`}
+                >
+                    {l}
+                </button>
+            ))}
+        </div>
+    );
 
     return (
         <>
             <header className={cn("fixed w-full left-0 top-0 z-50", className)}>
                 <div className={`px-5 py-3.5 duration-300 from-[#F0ECE2]/90 to-transparent bg-gradient-to-b ${offset > 10 && 'backdrop-blur-md bg-[#F0ECE2]/80 border-b border-[#171715]/5 shadow-xs'} w-full flex items-center`}>
+                    {/* Logo */}
                     <Link href={"/"} className="flex items-center gap-2.5 group">
                         <ZorsSymbol className="w-8 h-auto duration-200 group-hover:scale-105" />
                         <span className="text-base font-semibold tracking-tight text-[#171715] max-md:hidden">
                             ZORS CRAFT
                         </span>
                     </Link>
-                    <nav className={`hidden md:flex text-sm items-center gap-1.5 mx-auto bg-white/70 p-1 rounded-full border border-[#171715]/10 shadow-xs backdrop-blur-xs`}>
-                        {navItems.map((item, index) => {
+
+                    {/* Desktop Nav */}
+                    <nav className="hidden md:flex text-sm items-center gap-1.5 mx-auto bg-white/70 p-1 rounded-full border border-[#171715]/10 shadow-xs backdrop-blur-xs">
+                        {t.items.map((item, index) => {
                             const isActive = item.href === pathname;
                             return (
                                 <Link
@@ -67,11 +99,18 @@ const Header: FunctionComponent<HeaderProps> = ({ className }) => {
                             );
                         })}
                     </nav>
-                    <Button asChild className={`hidden md:flex rounded-full px-5 py-2 text-xs font-mono tracking-wide bg-[#171715] hover:bg-[#A88C40] text-[#F0ECE2] shadow-xs transition-colors duration-200`}>
-                        <Link href={"/contact"} className="flex items-center gap-1.5">
-                            Start a Project <MoveRight strokeWidth={1.5} className="size-3.5" />
-                        </Link>
-                    </Button>
+
+                    {/* Desktop Right: Lang Toggle + CTA */}
+                    <div className="hidden md:flex items-center gap-2">
+                        <LangToggle size="sm" />
+                        <Button asChild className="rounded-full px-5 py-2 text-xs font-mono tracking-wide bg-[#171715] hover:bg-[#A88C40] text-[#F0ECE2] shadow-xs transition-colors duration-200">
+                            <Link href={"/contact"} className="flex items-center gap-1.5">
+                                {t.cta} <MoveRight strokeWidth={1.5} className="size-3.5" />
+                            </Link>
+                        </Button>
+                    </div>
+
+                    {/* Mobile Hamburger */}
                     <Button onClick={() => setOpen(true)} className="ml-auto md:hidden bg-white/80 border border-[#171715]/10" variant={"secondary"} size={"icon"}>
                         <Menu className="text-[#171715]" />
                     </Button>
@@ -83,16 +122,17 @@ const Header: FunctionComponent<HeaderProps> = ({ className }) => {
                 <div className="flex items-center">
                     <div className="flex items-center gap-2.5">
                         <ZorsSymbol className="w-8 h-auto" />
-                        <span className="text-base font-semibold text-[#171715]">
-                            ZORS CRAFT
-                        </span>
+                        <span className="text-base font-semibold text-[#171715]">ZORS CRAFT</span>
                     </div>
-                    <Button onClick={() => setOpen(false)} className="ml-auto md:hidden bg-white/80 border border-[#171715]/10" variant={"outline"} size={"icon"}>
-                        <X className="text-[#171715]" />
-                    </Button>
+                    <div className="ml-auto flex items-center gap-2">
+                        <LangToggle size="xs" />
+                        <Button onClick={() => setOpen(false)} className="md:hidden bg-white/80 border border-[#171715]/10" variant={"outline"} size={"icon"}>
+                            <X className="text-[#171715]" />
+                        </Button>
+                    </div>
                 </div>
-                <nav className={`flex flex-col text-sm justify-center mt-auto gap-2`}>
-                    {navItems.map((item, index) => {
+                <nav className="flex flex-col text-sm justify-center mt-auto gap-2">
+                    {t.items.map((item, index) => {
                         const isActive = item.href === pathname;
                         return (
                             <Link
@@ -111,9 +151,9 @@ const Header: FunctionComponent<HeaderProps> = ({ className }) => {
                         );
                     })}
                 </nav>
-                <Button asChild className={`mt-auto w-fit rounded-full px-6 py-3 bg-[#171715] hover:bg-[#A88C40] text-[#F0ECE2] transition-colors`}>
+                <Button asChild className="mt-auto w-fit rounded-full px-6 py-3 bg-[#171715] hover:bg-[#A88C40] text-[#F0ECE2] transition-colors">
                     <Link href={"/contact"} onClick={() => setOpen(false)} className="flex items-center gap-1.5">
-                        Start a Project <MoveRight strokeWidth={1.5} className="size-4" />
+                        {t.cta} <MoveRight strokeWidth={1.5} className="size-4" />
                     </Link>
                 </Button>
             </div>
