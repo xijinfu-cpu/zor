@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FunctionComponent } from "react";
 import { ZorsLockup } from "./logo";
 import { useLang } from "@/lib/language-context";
@@ -40,6 +41,7 @@ const content = {
                     { label: 'Privacy Policy', link: '/legal/privacy' },
                     { label: 'Data Handling', link: '/legal/data-handling' },
                     { label: 'Cookie Policy', link: '/legal/cookie-policy' },
+                    { label: 'Admin Portal', link: '/admin' },
                 ],
             },
         ],
@@ -76,6 +78,7 @@ const content = {
                     { label: 'Kebijakan Privasi', link: '/legal/privacy' },
                     { label: 'Penanganan Data', link: '/legal/data-handling' },
                     { label: 'Kebijakan Cookie', link: '/legal/cookie-policy' },
+                    { label: 'Portal Admin', link: '/admin' },
                 ],
             },
         ],
@@ -85,8 +88,13 @@ const content = {
 };
 
 const Footer: FunctionComponent<FooterProps> = ({ className }) => {
+    const pathname = usePathname();
     const { lang } = useLang();
     const t = content[lang];
+
+    if (pathname?.startsWith("/admin")) {
+        return null;
+    }
 
     return (
         <footer className={cn("mt-32 mx-5 md:mx-auto max-w-4xl border-t border-[#171715]/10 pt-16", className)}>

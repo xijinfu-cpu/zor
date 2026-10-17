@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FunctionComponent, useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { Menu, MoveRight, X, Globe } from "lucide-react";
+import { Menu, MoveRight, X } from "lucide-react";
 import { ZorsSymbol } from "./logo";
 import { useLang } from "@/lib/language-context";
 
@@ -47,9 +47,13 @@ const Header: FunctionComponent<HeaderProps> = ({ className }) => {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    // Do not render public header on admin routes
+    if (pathname?.startsWith("/admin")) {
+        return null;
+    }
+
     const LangToggle = ({ size = "sm" }: { size?: "sm" | "xs" }) => (
         <div className={`inline-flex items-center gap-0.5 bg-[#171715]/5 border border-[#171715]/10 rounded-full ${size === "xs" ? "p-0.5" : "p-1"}`}>
-            <Globe className={`text-[#171715]/30 ml-1 ${size === "xs" ? "size-2.5" : "size-3"}`} />
             {(["en", "id"] as const).map((l) => (
                 <button
                     key={l}
