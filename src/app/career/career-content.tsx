@@ -1,9 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useLang } from "@/lib/language-context";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Briefcase } from "lucide-react";
+import { getJobs, JobPosition, DEFAULT_JOBS } from "@/lib/careers-store";
+import JobApplicationModal from "@/components/forms/job-application-modal";
 
-const careerData = {
+const careerStaticData = {
     en: {
         badge: "Careers at ZORS CRAFT",
         h1Line1: "Craft With Purpose.",
@@ -37,36 +40,13 @@ const careerData = {
         rolesTitle: "Open Roles",
         rolesSubtitle: "We hire talented individuals based on portfolio, problem-solving depth, and dedication to craftsmanship.",
         applyBtn: "Apply Now",
-        roles: [
-            {
-                id: "senior-frontend-engineer",
-                title: "Senior Frontend Engineer",
-                discipline: "Development",
-                accent: "#A88C40",
-                type: "Full-time / Remote (Indonesia / SEA)",
-                desc: "Lead web application architecture across Next.js, TypeScript, and modern headless ecosystems with extreme attention to micro-interactions and performance.",
-            },
-            {
-                id: "brand-ui-designer",
-                title: "Senior Brand & UI/UX Designer",
-                discipline: "Design",
-                accent: "#7D568E",
-                type: "Full-time / Remote (Indonesia / SEA)",
-                desc: "Shape brand identities, design systems, and digital product experiences that balance typographic rigor with human-centered interaction.",
-            },
-            {
-                id: "digital-strategist",
-                title: "Digital Strategist & Producer",
-                discipline: "Strategy",
-                accent: "#586B6D",
-                type: "Full-time / Hybrid (Bandung / Jakarta, Indonesia)",
-                desc: "Bridge client business objectives with creative and engineering roadmaps, facilitating discovery, sprints, and verified delivery.",
-            },
-        ],
+        noRolesTitle: "No Open Roles at This Time",
+        noRolesSubtitle: "All positions are currently closed or filled.",
+        noRolesDesc: "Thank you for your interest in joining ZORS CRAFT. We do not have any active openings right now, but we are always eager to meet exceptional craftspeople.",
         inquiriesBadge: "General Inquiries",
         inquiriesTitle: "Don’t See Your Exact Role?",
         inquiriesDesc: "We are always keen to meet curious engineers, thoughtful designers, and systems strategists. Send your portfolio and thoughts to our studio.",
-        inquiriesBtn: "Say Hello"
+        inquiriesBtn: "Open Application"
     },
     id: {
         badge: "Karier di ZORS CRAFT",
@@ -101,42 +81,47 @@ const careerData = {
         rolesTitle: "Posisi Terbuka",
         rolesSubtitle: "Kami merekrut talenta berbakat berdasarkan portofolio nyata, ketajaman problem-solving, dan dedikasi pada mutu karya.",
         applyBtn: "Lamar Sekarang",
-        roles: [
-            {
-                id: "senior-frontend-engineer",
-                title: "Senior Frontend Engineer",
-                discipline: "Pengembangan",
-                accent: "#A88C40",
-                type: "Penuh Waktu / Remote (Indonesia / SEA)",
-                desc: "Memimpin arsitektur aplikasi web modern Next.js, TypeScript, dan ekosistem headless dengan standar tinggi pada animasi dan performa.",
-            },
-            {
-                id: "brand-ui-designer",
-                title: "Senior Brand & UI/UX Designer",
-                discipline: "Desain",
-                accent: "#7D568E",
-                type: "Penuh Waktu / Remote (Indonesia / SEA)",
-                desc: "Merancang identitas brand, sistem desain terstruktur, dan pengalaman produk digital yang memadukan keindahan tipografi dengan kegunaan nyata.",
-            },
-            {
-                id: "digital-strategist",
-                title: "Digital Strategist & Producer",
-                discipline: "Strategi",
-                accent: "#586B6D",
-                type: "Penuh Waktu / Hybrid (Bandung / Jakarta, Indonesia)",
-                desc: "Menjembatani visi bisnis klien dengan peta jalan kreatif dan teknis, memfasilitasi sesi discovery, sprint, hingga delivery terverifikasi.",
-            },
-        ],
+        noRolesTitle: "Semua Lowongan Saat Ini Ditutup",
+        noRolesSubtitle: "Saat ini seluruh posisi sedang ditutup atau telah terisi penuh.",
+        noRolesDesc: "Terima kasih atas ketertarikan Anda untuk bergabung bersama ZORS CRAFT. Saat ini kami belum membuka lowongan aktif baru, namun kami selalu antusias menyambut talenta luar biasa.",
         inquiriesBadge: "Aplikasi Terbuka",
-        inquiriesTitle: "Tidak Menemukan Posisi yang Sesuai?",
+        inquiriesTitle: "Tertarik Bergabung Bersama Kami?",
         inquiriesDesc: "Kami selalu antusias bertemu dengan engineer yang haus belajar, desainer berempati, dan perancang strategi sistem. Kirimkan portofolio Anda ke studio kami.",
-        inquiriesBtn: "Sapa Kami"
+        inquiriesBtn: "Lamar Bebas (Open Application)"
     }
 };
 
 export default function CareerContent() {
     const { lang } = useLang();
-    const t = careerData[lang];
+    const t = careerStaticData[lang];
+    const [jobs, setJobs] = useState<JobPosition[]>(DEFAULT_JOBS);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedJob, setSelectedJob] = useState<{ id: string; title: string; department?: string }>({
+        id: "",
+        title: "",
+        department: "",
+    });
+
+    useEffect(() => {
+        const load = () => {
+            setJobs(getJobs());
+        };
+        load();
+
+        window.addEventListener("zors_jobs_updated", load);
+        window.addEventListener("storage", load);
+        return () => {
+            window.removeEventListener("zors_jobs_updated", load);
+            window.removeEventListener("storage", load);
+        };
+    }, []);
+
+    const openJobs = jobs.filter((j) => j.status === "open");
+
+    const handleOpenApply = (jobId: string, jobTitle: string, department?: string) => {
+        setSelectedJob({ id: jobId, title: jobTitle, department });
+        setModalOpen(true);
+    };
 
     return (
         <>
@@ -205,7 +190,7 @@ export default function CareerContent() {
                 </div>
             </section>
 
-            {/* 3. Open Roles */}
+            {/* 3. Roles Section (Open or Closed State) */}
             <section className="py-16 bg-[#F0ECE2] border-y border-[#171715]/10">
                 <div className="max-w-5xl mx-auto px-5">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -214,55 +199,80 @@ export default function CareerContent() {
                                 {t.rolesBadge}
                             </span>
                             <h2 className="text-3xl md:text-4xl font-semibold text-[#171715] tracking-tight mt-1">
-                                {t.rolesTitle}
+                                {openJobs.length > 0 ? t.rolesTitle : t.noRolesTitle}
                             </h2>
                         </div>
                         <p className="text-sm text-[#5C5850] max-w-sm">
-                            {t.rolesSubtitle}
+                            {openJobs.length > 0 ? t.rolesSubtitle : t.noRolesSubtitle}
                         </p>
                     </div>
 
-                    <div className="space-y-4">
-                        {t.roles.map((role) => (
-                            <div
-                                key={role.id}
-                                className="bg-white/80 p-6 md:p-8 rounded-2xl border border-[#171715]/10 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#A88C40]/40 transition-colors"
-                            >
-                                <div className="space-y-2 max-w-2xl">
-                                    <div className="flex items-center gap-2.5">
-                                        <span
-                                            className="text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium"
-                                            style={{
-                                                backgroundColor: `${role.accent}15`,
-                                                color: role.accent,
-                                                borderColor: `${role.accent}30`,
-                                                borderWidth: 1,
-                                            }}
-                                        >
-                                            {role.discipline}
-                                        </span>
-                                        <span className="text-xs text-[#5C5850] font-mono">
-                                            {role.type}
-                                        </span>
-                                    </div>
-                                    <h3 className="text-xl font-semibold text-[#171715]">
-                                        {role.title}
-                                    </h3>
-                                    <p className="text-sm text-[#4A4740] leading-relaxed">
-                                        {role.desc}
-                                    </p>
-                                </div>
-                                <div className="shrink-0">
-                                    <a
-                                        href={`mailto:careers@zorscraft.id?subject=Application for ${encodeURIComponent(role.title)}`}
-                                        className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#171715] hover:bg-[#A88C40] hover:text-[#171715] text-[#F0ECE2] text-sm font-medium transition-colors"
+                    {openJobs.length > 0 ? (
+                        <div className="space-y-4">
+                            {openJobs.map((role) => {
+                                const accent = role.accent || (role.department === "Engineering" ? "#A88C40" : role.department === "Design" ? "#7D568E" : "#586B6D");
+                                const description = lang === "id" && role.descId ? role.descId : role.descEn || role.title;
+
+                                return (
+                                    <div
+                                        key={role.id}
+                                        className="bg-white/80 p-6 md:p-8 rounded-2xl border border-[#171715]/10 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#A88C40]/40 transition-colors"
                                     >
-                                        {t.applyBtn} <ArrowUpRight className="size-4" />
-                                    </a>
-                                </div>
+                                        <div className="space-y-2 max-w-2xl">
+                                            <div className="flex items-center gap-2.5">
+                                                <span
+                                                    className="text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full font-medium"
+                                                    style={{
+                                                        backgroundColor: `${accent}15`,
+                                                        color: accent,
+                                                        borderColor: `${accent}30`,
+                                                        borderWidth: 1,
+                                                    }}
+                                                >
+                                                    {role.department}
+                                                </span>
+                                                <span className="text-xs text-[#5C5850] font-mono">
+                                                    {role.type}
+                                                </span>
+                                                {role.location && (
+                                                    <span className="text-xs text-[#5C5850] font-mono">
+                                                        • {role.location}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h3 className="text-xl font-semibold text-[#171715]">
+                                                {role.title}
+                                            </h3>
+                                            <p className="text-sm text-[#4A4740] leading-relaxed">
+                                                {description}
+                                            </p>
+                                        </div>
+                                        <div className="shrink-0">
+                                            <button
+                                                onClick={() => handleOpenApply(role.id, role.title, role.department)}
+                                                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#171715] hover:bg-[#A88C40] hover:text-[#171715] text-[#F0ECE2] text-sm font-medium transition-colors cursor-pointer"
+                                            >
+                                                {t.applyBtn} <ArrowUpRight className="size-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        /* Empty State When All Jobs Are Closed */
+                        <div className="bg-white/90 p-8 md:p-12 rounded-3xl border border-[#171715]/10 shadow-xs text-center space-y-4">
+                            <div className="inline-flex p-3.5 rounded-2xl bg-[#A88C40]/10 text-[#A88C40] mb-2">
+                                <Briefcase className="size-8" />
                             </div>
-                        ))}
-                    </div>
+                            <h3 className="text-xl md:text-2xl font-semibold text-[#171715]">
+                                {t.noRolesTitle}
+                            </h3>
+                            <p className="text-sm md:text-base text-[#5C5850] max-w-lg mx-auto leading-relaxed">
+                                {t.noRolesDesc}
+                            </p>
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -282,16 +292,25 @@ export default function CareerContent() {
                             </p>
                         </div>
                         <div className="shrink-0">
-                            <a
-                                href="mailto:careers@zorscraft.id?subject=Open Application"
-                                className="px-6 py-3.5 rounded-full bg-[#171715] text-[#F0ECE2] font-medium hover:bg-[#A88C40] hover:text-[#171715] duration-300 inline-flex items-center gap-2 text-base shadow-sm"
+                            <button
+                                onClick={() => handleOpenApply("open-application", "Open Application / Aplikasi Terbuka", "General")}
+                                className="px-6 py-3.5 rounded-full bg-[#171715] text-[#F0ECE2] font-medium hover:bg-[#A88C40] hover:text-[#171715] duration-300 inline-flex items-center gap-2 text-base shadow-sm cursor-pointer"
                             >
                                 {t.inquiriesBtn} <ArrowUpRight className="size-5" />
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* Job Application Modal Form */}
+            <JobApplicationModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+                jobId={selectedJob.id}
+                jobTitle={selectedJob.title}
+                department={selectedJob.department}
+            />
         </>
     );
 }

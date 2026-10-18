@@ -1,6 +1,9 @@
+"use client";
+
 import { ArrowUpRight, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
+import { useLang } from "@/lib/language-context";
 
 export interface LegalSection {
     number: string;
@@ -31,6 +34,8 @@ export default function LegalLayout({
     importantNotice,
     sections,
 }: LegalLayoutProps) {
+    const { lang } = useLang();
+
     return (
         <div className="pt-36 md:pt-44 pb-24">
             <div className="max-w-3xl mx-auto px-5">
@@ -40,7 +45,7 @@ export default function LegalLayout({
                         className="text-xs uppercase tracking-wider font-mono font-medium block mb-2"
                         style={{ color: accentColor }}
                     >
-                        LEGAL
+                        {lang === "id" ? "LEGALITAS" : "LEGAL"}
                     </span>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#171715] mb-3">
                         {title}
@@ -49,7 +54,7 @@ export default function LegalLayout({
                         {subtitle}
                     </p>
                     <p className="text-xs font-mono text-[#5C5850]">
-                        Last updated: {lastUpdated}
+                        {lang === "id" ? "Terakhir diperbarui:" : "Last updated:"} {lastUpdated}
                     </p>
                 </div>
 
@@ -118,10 +123,10 @@ export default function LegalLayout({
                 <div className="bg-white/80 p-6 md:p-8 rounded-2xl border border-[#171715]/10 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <span className="text-xs uppercase tracking-wider text-[#A88C40] font-mono block mb-1">
-                            Questions or Notices?
+                            {lang === "id" ? "Ada Pertanyaan atau Pemberitahuan?" : "Questions or Notices?"}
                         </span>
                         <p className="text-sm text-[#5C5850]">
-                            Reach out to our team at{" "}
+                            {lang === "id" ? "Hubungi tim kami di " : "Reach out to our team at "}
                             <a
                                 href="mailto:hello@zorscraft.id"
                                 className="font-semibold text-[#171715] hover:text-[#A88C40] transition-colors"
@@ -134,7 +139,7 @@ export default function LegalLayout({
                         href="/contact"
                         className="inline-flex items-center gap-1.5 text-xs font-mono font-medium px-4 py-2.5 rounded-xl bg-[#171715] hover:bg-[#A88C40] text-[#F0ECE2] transition-colors duration-200 shrink-0 justify-center"
                     >
-                        Contact Us <ArrowUpRight className="size-3.5" />
+                        {lang === "id" ? "Hubungi Kami" : "Contact Us"} <ArrowUpRight className="size-3.5" />
                     </Link>
                 </div>
             </div>

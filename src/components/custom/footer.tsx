@@ -41,11 +41,10 @@ const content = {
                     { label: 'Privacy Policy', link: '/legal/privacy' },
                     { label: 'Data Handling', link: '/legal/data-handling' },
                     { label: 'Cookie Policy', link: '/legal/cookie-policy' },
-                    { label: 'Admin Portal', link: '/admin' },
                 ],
             },
         ],
-        copyright: `© ${new Date().getFullYear()} PT Zors Craft Digital. All rights reserved.`,
+        copyright: `© ${new Date().getFullYear()} Zors Craft. All rights reserved.`,
         services: "Strategy • Branding • Design • Development • Optimization • Support",
     },
     id: {
@@ -72,17 +71,16 @@ const content = {
                 ],
             },
             {
-                label: "3. Legal",
+                label: "3. Legalitas",
                 links: [
                     { label: 'Syarat & Ketentuan', link: '/legal/terms' },
                     { label: 'Kebijakan Privasi', link: '/legal/privacy' },
                     { label: 'Penanganan Data', link: '/legal/data-handling' },
                     { label: 'Kebijakan Cookie', link: '/legal/cookie-policy' },
-                    { label: 'Portal Admin', link: '/admin' },
                 ],
             },
         ],
-        copyright: `© ${new Date().getFullYear()} PT Zors Craft Digital. Hak cipta dilindungi.`,
+        copyright: `© ${new Date().getFullYear()} Zors Craft. Hak cipta dilindungi.`,
         services: "Strategi • Branding • Desain • Pengembangan • Optimasi • Dukungan",
     },
 };
